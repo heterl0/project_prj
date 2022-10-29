@@ -60,7 +60,7 @@
                         <div class="col-md-4">
                             <div class="full">
                                 <div class="logo_footer">
-                                    <a href="#"><img width="75" src="Assest/Logo.png" alt="#" /></a>
+                                    <a href="index.jsp"><img width="75" src="Assest/Logo.png" alt="#" /></a>
                                 </div>
                                 <div class="information_f">
                                     <p><strong>ADDRESS:</strong> Cầu Rau Răm, đường Đ. Nguyễn Văn Cừ, 

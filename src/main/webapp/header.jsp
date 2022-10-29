@@ -34,7 +34,7 @@
     <header class="header_section">
         <div class="container">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" href="index.html"><img width="250" src="Assest/Logo.png" alt="#" /></a>
+                <a class="navbar-brand" href="index.jsp"><img width="250" src="Assest/Logo.png" alt="#" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -56,8 +56,8 @@
                                 aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Account <span
                                         class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="about.html">Đăng kí</a></li>
-                                <li><a href="testimonial.html">Đăng nhập</a></li>
+                                <li><a href="signup.jsp">Đăng kí</a></li>
+                                <li><a href="signin.jsp">Đăng nhập</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
