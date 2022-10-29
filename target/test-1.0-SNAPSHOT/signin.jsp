@@ -44,20 +44,22 @@
             form .txt_txtfield{
                 position: relative;
                 border-bottom: 2px solid #adadad;
-                margin: 10px 0;
+                margin-top: 20px;
             }
             .txt_txtfield input{
                 width : 100%;
-                padding: 0 50px;
+                padding: 0px;
                 height:40px;
                 font-size: 16px;
                 border: none;
                 background: none ;
                 outline: none;
+                margin-bottom: 0px;
+                padding-left: 10px;
             }
             .txt_txtfield label{
                 position: absolute;
-                top: 50%;
+                top: 0;
                 left: 5px;
                 color: black;
                 transform: translateY(-50%);
@@ -69,7 +71,7 @@
             .txt_txtfield span ::before{
                 content: '';
                 position: absolute;
-                top: 40px;
+                top: 35px;
                 left: 0;
                 width: 0%;
                 height: 2px;
@@ -130,9 +132,11 @@
 
             }
             #signin_section {
-                padding: 120px 60px;
+                padding: 110px 60px;
             }
-
+            .signin_button {
+                margin: 30px;
+            }
 
 
 
@@ -147,24 +151,28 @@
         </div>
         <!-- inner page section -->
         <section id="signin_section"class="container">
-            <div  class="center">
-                <h1 align="left">Đăng Nhập</h1>
-                <form method="post" action="">
-                    <div class="txt_txtfield">
-                        <input type="text" required>
-                        <span></span>
-                        <label>Username</label>
-                    </div>
-                    <div class="txt_txtfield">
-                        <input type="password" required>
-                        <span></span>
-                        <label>Password</label>
-                    </div>
-                    <input type="submit" value="Sign in">
-                    <div class="signup_link">
-                        Not a member? <a href="#" style="color : red;">Sign up</a>
-                    </div>
-                </form>
+            <div  class="row">
+                <div class="offset-lg-4 col-lg-4 offset-lg-4">
+                    <h1 align="left">Đăng Nhập</h1>
+                    <form method="post" action="">
+                        <div class="txt_txtfield">
+                            <input type="text" required>
+                            <span></span>  
+                            <label>Number phone</label>
+                        </div>
+                        <div class="txt_txtfield">
+                            <input type="password" required>
+                            <span></span>
+                            <label>Password</label>
+                        </div>
+                        <div class="signin_button">
+                            <input type="submit" value="Sign in">
+                        </div>
+                        <div class="signup_link">
+                            Not a member? <a href="signup.jsp" style="color : red;">Sign up</a>
+                        </div>
+                    </form>
+                </div>
             </div>
         </section>
         <!-- end product section -->
