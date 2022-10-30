@@ -30,9 +30,6 @@
         <!-- responsive style -->
         <link href="css/responsive.css" rel="stylesheet" />
         <style>
-
-
-
             .center h1{
                 text-align: center;
                 padding: 0 0 20px 0;
@@ -66,17 +63,6 @@
                 transform: translateY(-50%);
                 font-size: 16px;
                 pointer-events: none;
-                transition: .5s;
-            }
-
-            .txt_txtfield span ::before{
-                content: '';
-                position: absolute;
-                top: 35px;
-                left: 0;
-                width: 0%;
-                height: 2px;
-                background: #2691d9;
                 transition: .5s;
             }
             .txt_txtfield input:focus ~ label,
@@ -142,6 +128,84 @@
 
 
         </style>
+        <script src="https://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#errorPhone').hide();
+                $('#errorPass').hide();
+                $('#errorRePass').hide();
+                $('#errorEmail').hide();
+                $('#txtPhone').blur(function (event) {
+                    var phone = $('#txtPhone').val();
+                    $.get('SignUpServlet', {
+                        checkPhone: phone
+                    }, function (responseText) {
+                        if (responseText === '') {
+                            $('#errorPhone').text("");
+                            $('#errorPhone').hide();
+                            $('#btnSignUp').removeAttr('disabled');
+                        } else {
+                            $('#errorPhone').show();
+                            $('#errorPhone').text(responseText);
+                            $('#btnSignUp').attr('disabled', 'disabled');
+                        }
+                    });
+                });
+                $('#txtPass').blur(function (event) {
+                    var pass = $('#txtPass').val();
+                    $.get('SignUpServlet', {
+                        checkPass: pass
+                    }, function (responseText) {
+                        if (responseText === '') {
+                            $('#errorPass').text("");
+                            $('#errorPass').hide();
+                            $('#btnSignUp').removeAttr('disabled');
+                        } else {
+                            $('#errorPass').show();
+                            $('#errorPass').text(responseText);
+                            $('#btnSignUp').attr('disabled', 'disabled');
+
+                        }
+                    });
+                });
+                $('#txtRePass').blur(function (event) {
+                    var pass1 = $('#txtPass').val();
+                    var pass2 = $('#txtRePass').val();
+                    $.get('SignUpServlet', {
+                        checkRePass1: pass1,
+                        checkRePass2: pass2
+                    }, function (responseText) {
+                        if (responseText === '') {
+                            $('#errorRePass').text("");
+                            $('#errorRePass').hide();
+                            $('#btnSignUp').removeAttr('disabled');
+                        } else {
+                            $('#errorRePass').show();
+                            $('#errorRePass').text(responseText);
+                            $('#btnSignUp').attr('disabled', 'disabled');
+
+                        }
+                    });
+                });
+                 $('#txtEmail').blur(function (event) {
+                    var email = $('#txtEmail').val();
+                    $.get('SignUpServlet', {
+                        checkEmail: email
+                    }, function (responseText) {
+                        if (responseText === '') {
+                            $('#errorEmail').text("");
+                            $('#errorEmail').hide();
+                            $('#btnSignUp').removeAttr('disabled');
+                        } else {
+                            $('#errorEmail').show();
+                            $('#errorEmail').text(responseText);
+                            $('#btnSignUp').attr('disabled', 'disabled');
+
+                        }
+                    });
+                });
+            });
+        </script>
     </head>
 
     <body class="sub_page">
@@ -153,44 +217,47 @@
         <!-- inner page section -->
         <section id="signin_section"class="container">
             <div  class="row">
-                <div class="offset-lg-4 col-lg-4 offset-lg-4">
-                <h1 align="left">Đăng Ký</h1>
-                <form method="post" action="">
-                    <div class="txt_txtfield">
-                        <input type="text" required>
-                        <span></span>
-                        <label>Number phone</label>
-                    </div>
-                    <div class="txt_txtfield">
-                        <input type="password" required>
-                        <span></span>
-                        <label>Password</label>
-                    </div>
-                    <div class="txt_txtfield">
-                        <input type="password" required>
-                        <span></span>
-                        <label>Confirm Password</label>
-                    </div>
-                    <div class="txt_txtfield">
-                        <input type="text" required>
-                        <span></span>
-                        <label>Address</label>
-                    </div>
-                    <div class="txt_txtfield">
-                        <input type="text" required>
-                        <span></span>
-                        <label>Email</label>
-                    </div>
-                    <div class="txt_txtfield">
-                        <input type="text" required>
-                        <span></span>
-                        <label>Full name</label>
-                    </div>
-                    <div class="signin_button">
-                        <input type="submit" value="Sign up">
-                    </div>
-                </form>
-            </div>
+                <div class="offset-lg-4 col-lg-4">
+                    <h1 align="left">Đăng Ký</h1>
+                    <form method="post" action="SignUpServlet">
+                        <div class="txt_txtfield">
+                            <input type="text" required name="txtPhone" id="txtPhone" placeholder="Ex: 0828687727">
+                            <span></span>
+                            <label>Number phone</label>
+                        </div>
+                        <div class="alert alert-danger" id="errorPhone"></div>
+                        <div class="txt_txtfield">
+                            <input type="password" required name="txtPass" id="txtPass" placeholder="Ex: adnnxcxz_123">
+                            <span></span>
+                            <label>Password</label>
+                        </div>
+                        <div class="alert alert-danger" id="errorPass"></div>
+                        <div class="txt_txtfield">
+                            <input type="password" required name="txtRePass" id="txtRePass">
+                            <span></span>
+                            <label>Confirm Password</label>
+                        </div>
+                        <div class="alert alert-danger" id="errorRePass"></div>
+                        <div class="txt_txtfield">
+                            <input type="text" required name="txtName" placeholder="Ex: Le Van Hieu">
+                            <span></span>
+                            <label>Full name</label>
+                        </div>
+                        <div class="txt_txtfield" >
+                            <input type="email" required name="txtEmail" placeholder="Ex: lehieu99666@gmail.com">
+                            <span></span>
+                            <label>Email</label>
+                        </div>
+                        <div class="alert alert-danger" id="errorEmail"></div>
+                        <div class="txt_txtfield">
+                            <input type="text" required name="txtAddress" placeholder="Ex: Can Tho, Ca Do, 81 Ap Thanh Loi">
+                            <span></span>
+                            <label>Address</label>
+                        </div>
+                        <div class="signin_button">
+                            <input type="submit" value="Sign up" name="btnSignUp" id="btnSignUp">
+                        </div>
+                    </form>
             </div>
         </section>
         <!-- end product section -->

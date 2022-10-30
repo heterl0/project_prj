@@ -41,14 +41,14 @@ public class AccountDAO {
         return rs;
     }
     
-    public Account getStudent(String account_phone) {
+    public Account getAccount(String account_phone) {
         Account account = null;
         try {
             PreparedStatement pst = conn.prepareStatement("Select * from Account where account_phone=?");
             pst.setString(1, account_phone);
             ResultSet rs = pst.executeQuery();
             rs.next();
-            account = new Account(rs.getInt(0), rs.getString(1),rs.getString(2),rs.getInt(3));
+            account = new Account(rs.getInt("account_id"), rs.getString("account_phone"),rs.getString("account_pass"),rs.getInt("role_id"));
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -60,8 +60,8 @@ public class AccountDAO {
         try {
             PreparedStatement pst = conn.prepareStatement("Insert into Account values(?,?,?,?)");
             pst.setInt(1, account.getAccount_id());
-            pst.setString(2, account.getAccount_phone());
-            pst.setString(3, account.getAccount_pass());
+            pst.setString(2, account.getAccount_pass());
+            pst.setString(3, account.getAccount_phone());
             pst.setInt(4, account.getAccount_role());
             count = pst.executeUpdate();
         } catch (SQLException ex) {
@@ -91,6 +91,21 @@ public class AccountDAO {
             PreparedStatement pst = conn.prepareStatement("Delete from Account where account_id=?");
             pst.setInt(1, account_id);
             count = pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return count;
+    }
+    
+    public int getSize() {
+        int count = 0;
+        ResultSet rs = null;
+        try {
+            Statement st = conn.createStatement();
+            rs = st.executeQuery("Select * from Account");
+            while(rs.next()) {
+                count++;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
