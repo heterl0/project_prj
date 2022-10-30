@@ -4,6 +4,9 @@
     Author     : Heterl0
 --%>
 
+<%@page import="com.models.Customer"%>
+<%@page import="com.daos.CustomerDAO"%>
+<%@page import="com.models.Account"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -31,16 +34,33 @@
     </head>
 
     <body>
+        <%
+            boolean isLogin = false;
+            String account_id = "";
+            String customer_fullName = "";
+            String customer_name = "";
+            if (!session.isNew()) {
+                for (Cookie c : request.getCookies()) {
+                    if (c.getName().equals("account_id")) {
+                        isLogin = true;
+                        account_id = c.getValue();
+                        CustomerDAO dao = new CustomerDAO();
+                        Customer customer = dao.getCustomerByAccountID(Integer.parseInt(account_id));
+                        customer_fullName = customer.getCustomer_name();
+                        String[] s = customer_fullName.split(" ");
+                        customer_name = s[s.length - 1];
+                    }
+                }
+            }
+        %>
         <header class="header_section">
             <div class="container">
                 <nav class="navbar navbar-expand-lg custom_nav-container ">
                     <a class="navbar-brand" href="index.jsp"><img width="250" src="Assest/Logo.png" alt="#" /></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                            aria-label="Toggle navigation">
+                    <button  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class=""> </span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Nước hoa</a>
@@ -51,15 +71,33 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="blog_list.html">Nhãn Hiệu</a>
                             </li>
+                            <%
+                                if (isLogin) {
+                            %>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="true"> <span class="nav-label"><%= "Xin chào " + customer_name%><span
+                                            class="caret"></span></a>
+                                <ul class="dropdown-menu position-absolute">
+                                    <li><a href="#">Thông tin</a></li>
+                                    <li><a onclick="return confirm('Bạn có thật sự muốn đăng xuất?');"href="SignInServlet?signout=true">Đăng xuất</a></li>
+                                </ul>
+                            </li>
+                            <%
+                            } else {
+                            %>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
                                    aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Account <span
                                             class="caret"></span></a>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu position-absolute">
                                     <li><a href="signup.jsp">Đăng kí</a></li>
                                     <li><a href="signin.jsp">Đăng nhập</a></li>
                                 </ul>
                             </li>
+                            <%
+                                }
+                            %>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"

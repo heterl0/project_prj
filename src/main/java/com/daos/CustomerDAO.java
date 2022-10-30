@@ -42,11 +42,11 @@ public class CustomerDAO {
         return rs;
     }
     
-    public Customer getCustomerById(String customer_id) {
+    public Customer getCustomerById(int customer_id) {
         Customer customer = null;
         try {
             PreparedStatement pst = conn.prepareStatement("Select * from Customer where customer_id=?");
-            pst.setString(1, customer_id);
+            pst.setInt(1, customer_id);
             ResultSet rs = pst.executeQuery();
             rs.next();
             customer = new Customer(rs.getInt("customer_id"), rs.getInt("account_id"),
@@ -58,16 +58,16 @@ public class CustomerDAO {
         return customer;
     } 
     
-    public Customer getCustomerByAccountID(String account_id) {
+    public Customer getCustomerByAccountID(int account_id) {
         Customer customer = null;
         try {
-            PreparedStatement pst = conn.prepareStatement("Select * from Customer where account_id=?");
-            pst.setString(1, account_id);
+            PreparedStatement pst = conn.prepareStatement("select * from Customer where account_id=?");
+            pst.setInt(1, account_id);
             ResultSet rs = pst.executeQuery();
             rs.next();
             customer = new Customer(rs.getInt("customer_id"), rs.getInt("account_id"),
-                    rs.getString("account_fullName"),rs.getString("account_email"), 
-                    rs.getString("account_address"));
+                    rs.getString("customer_fullName"),rs.getString("customer_email"), 
+                    rs.getString("customer_address"));
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
