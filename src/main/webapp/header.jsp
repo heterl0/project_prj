@@ -39,6 +39,7 @@
             String account_id = "";
             String customer_fullName = "";
             String customer_name = "";
+            int role_id = 0;
             if (!session.isNew()) {
                 for (Cookie c : request.getCookies()) {
                     if (c.getName().equals("account_id")) {
@@ -46,9 +47,10 @@
                         account_id = c.getValue();
                         CustomerDAO dao = new CustomerDAO();
                         Customer customer = dao.getCustomerByAccountID(Integer.parseInt(account_id));
+                        
                         customer_fullName = customer.getCustomer_name();
                         String[] s = customer_fullName.split(" ");
-                        customer_name = s[s.length - 1];
+                        customer_name   = s[s.length - 1];
                     }
                 }
             }
