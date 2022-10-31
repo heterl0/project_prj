@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,13 +29,9 @@
         <!-- responsive style -->
         <link href="css/responsive.css" rel="stylesheet" />
         <style>
-
-
-
             .center h1{
                 text-align: center;
                 padding: 0 0 20px 0;
-                border-bottom: 1px solid silver;
             }
 
             .center form {
@@ -65,17 +62,6 @@
                 transform: translateY(-50%);
                 font-size: 16px;
                 pointer-events: none;
-                transition: .5s;
-            }
-
-            .txt_txtfield span ::before{
-                content: '';
-                position: absolute;
-                top: 35px;
-                left: 0;
-                width: 0%;
-                height: 2px;
-                background: #2691d9;
                 transition: .5s;
             }
             .txt_txtfield input:focus ~ label,
@@ -141,6 +127,48 @@
 
 
         </style>
+        <script src="https://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#errorPhone').hide();
+                $('#errorPass').hide();
+                $('#txtPhone').blur(function (event) {
+                    var phone = $('#txtPhone').val();
+                    $.get('SignInServlet', {
+                        checkPhone: phone
+                    }, function (responseText) {
+                        if (responseText === '') {
+                            $('#errorPhone').text("");
+                            $('#errorPhone').hide();
+                            $('#btnSignUp').removeAttr('disabled');
+                        } else {
+                            $('#errorPhone').show();
+                            $('#errorPhone').text(responseText);
+                            $('#btnSignUp').attr('disabled', 'disabled');
+                        }
+                    });
+                });
+                $('#txtPass').blur(function (event) {
+                    var phone = $('#txtPhone').val();
+                    var pass = $('#txtPass').val();
+                    $.get('SignInServlet', {
+                        checkPass: pass,
+                        checkPhonePass: phone
+                    }, function (responseText) {
+                        if (responseText === '') {
+                            $('#errorPass').text("");
+                            $('#errorPass').hide();
+                            $('#btnSignUp').removeAttr('disabled');
+                        } else {
+                            $('#errorPass').show();
+                            $('#errorPass').text(responseText);
+                            $('#btnSignUp').attr('disabled', 'disabled');
+
+                        }
+                    });
+                });
+            });
+        </script>
     </head>
 
     <body class="sub_page">
@@ -154,19 +182,21 @@
             <div  class="row">
                 <div class="offset-lg-4 col-lg-4 offset-lg-4">
                     <h1 align="left">Đăng Nhập</h1>
-                    <form method="post" action="">
+                    <form method="post" action="SignInServlet">
                         <div class="txt_txtfield">
-                            <input type="text" required>
+                            <input type="text" required name="txtPhone" id="txtPhone">
                             <span></span>  
                             <label>Number phone</label>
                         </div>
+                        <div class="alert alert-danger" id="errorPhone"></div>
                         <div class="txt_txtfield">
-                            <input type="password" required>
+                            <input type="password" required name="txtPass" id="txtPass">
                             <span></span>
                             <label>Password</label>
                         </div>
+                        <div class="alert alert-danger" id="errorPass"></div>
                         <div class="signin_button">
-                            <input type="submit" value="Sign in">
+                            <input type="submit" value="Sign in" name="btnSignIn" id="btnSignIn">
                         </div>
                         <div class="signup_link">
                             Not a member? <a href="signup.jsp" style="color : red;">Sign up</a>
