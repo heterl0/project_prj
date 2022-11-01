@@ -175,7 +175,7 @@
    
    <body class="sub_page">
        <% 
-            int product_id = 1;
+            int product_id = Integer.parseInt(request.getParameter("product_id"));
             ProductDAO productDAO = new ProductDAO();
             Product product = productDAO.getProduct(product_id);
             String[] productImages = productDAO.getProductImage(product_id);

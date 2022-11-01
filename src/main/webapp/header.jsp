@@ -185,7 +185,7 @@
                                 <a class="nav-link" href="#">Quản lí sản phẩm</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Quản lí tài khoản</a>
+                                <a class="nav-link" href="list.jsp">Quản lí tài khoản</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Quản lí đơn hàng</a>

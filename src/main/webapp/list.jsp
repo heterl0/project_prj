@@ -23,6 +23,7 @@
         </style>
     </head>
     <body>
+        <%@include file="header.jsp" %>
         <div class="container"> 
             <h1 align="center">Customer and Account Management</h1>
             <table class="table table-striped" border="1">
@@ -64,5 +65,6 @@
                 %>
             </table>
         </div>
+                <%@include file="footer.jsp" %>
     </body>
 </html>

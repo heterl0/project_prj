@@ -18,7 +18,7 @@ public class DBConnection {
 
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        String url = "jdbc:sqlserver://THINKPAD-E15\\SQLEXPRESS:1433;databaseName=PRJ_Project;user=sa;password=123456;encrypt=true;trustServerCertificate=true;";
+        String url = "jdbc:sqlserver://MSI\\SQLEXPRESS:1433;databaseName=PRJ_Project;user=sa;password=1;encrypt=true;trustServerCertificate=true;";
         conn = DriverManager.getConnection(url) ;
         return conn;
     }

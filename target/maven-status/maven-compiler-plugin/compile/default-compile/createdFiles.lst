@@ -1,8 +1,8 @@
 com\daos\AccountDAO.class
 com\servlets\AccountServlet.class
-com\daos\CustomerDAO.class
-com\servlets\SignUpServlet.class
 com\db\DBConnection.class
 com\models\Customer.class
-com\models\Account.class
 com\servlets\SignInServlet.class
+com\daos\CustomerDAO.class
+com\servlets\SignUpServlet.class
+com\models\Account.class
