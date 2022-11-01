@@ -55,6 +55,20 @@ public class AccountDAO {
         return account;
     } 
     
+    public Account getAccountBy(String account_id) {
+        Account account = null;
+        try {
+            PreparedStatement pst = conn.prepareStatement("Select * from Account where account_id=?");
+            pst.setString(1, account_id);
+            ResultSet rs = pst.executeQuery();
+            rs.next();
+            account = new Account(rs.getInt("account_id"), rs.getString("account_phone"),rs.getString("account_pass"),rs.getInt("role_id"));
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return account;
+    } 
+    
     public int addNew(Account account) {
         int count = 0;
         try {
