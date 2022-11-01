@@ -4,6 +4,8 @@
     Author     : Heterl0
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.daos.BrandDAO"%>
 <%@page import="com.daos.AccountDAO"%>
 <%@page import="com.models.Customer"%>
 <%@page import="com.daos.CustomerDAO"%>
@@ -76,13 +78,28 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Nước hoa</a>
+                                <a class="nav-link" href="product.jsp">Nước hoa</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="product.html">New Arrival</a>
+                                <a class="nav-link" href="newarrival.jsp">New Arrival</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="blog_list.html">Nhãn Hiệu</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Nhãn Hiệu<span
+                                            class="caret"></span></a>
+                                            <%
+                                                BrandDAO brandDAO = new BrandDAO();
+                                                ResultSet brandSet = brandDAO.getAll();
+                                            %>
+                                <ul class="dropdown-menu position-absolute">
+                                    <% 
+                                        while (brandSet.next()) {
+                                    %>
+                                    <li><a href="Product_brand.jsp?brand_id=<%= brandSet.getInt("brand_id")%>"><%= brandSet.getString("brand_name")%></a></li>
+                                    <% 
+                                        }
+                                    %>
+                                </ul>
                             </li>
                             <%
                                 if (isLogin) {
@@ -104,7 +121,7 @@
                                    aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Account <span
                                             class="caret"></span></a>
                                 <ul class="dropdown-menu position-absolute">
-                                    <li><a href="signup.jsp">Đăng kí</a></li>
+                                    <li><a href="signup.jsp">Đăng ký</a></li>
                                     <li><a href="signin.jsp">Đăng nhập</a></li>
                                 </ul>
                             </li>
