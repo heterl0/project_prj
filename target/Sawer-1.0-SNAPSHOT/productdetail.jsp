@@ -4,6 +4,8 @@
     Author     : Nguyen Truong Quoc Duy Ce160380
 --%>
 
+<%@page import="com.daos.ProductDAO"%>
+<%@page import="com.models.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -48,12 +50,13 @@
        }
        
        .big-img{
-           width: 250px;
+           width: 300px;
            
        }
        
        .big-img img{
            width: inherit;
+           border-radius: 5px;
        }
        
        .images{
@@ -171,6 +174,12 @@
    </style>
    
    <body class="sub_page">
+       <% 
+            int product_id = 1;
+            ProductDAO productDAO = new ProductDAO();
+            Product product = productDAO.getProduct(product_id);
+            String[] productImages = productDAO.getProductImage(product_id);
+       %>
       <div class="hero_area">
          <!-- header section strats -->
          <%@include file="header.jsp" %>
@@ -195,37 +204,22 @@
              <div class="flex-box">
                  <div class="left" >
                      <div class="big-img">
-                         <img src="Image_Perfume/dior_sauvage_elixir_1638349852_875b6dd8_progressive.jpg">
+                         <img src="<%= productImages[0] %>">
                      </div>
                          <div class="images">
+                             <% for (String imageLink : productImages) {
+                             %>
                              <div class="small-img">
-                                 <img src="Image_Perfume/dior_sauvage_elixir_orchardvn_hinh2.png" onclick="showImg(this.src)">
+                                 <img src="<%= imageLink%>" onclick="showImg(this.src)">
                              </div>
-                             <div class="small-img">
-                                 <img src="Image_Perfume/dior_sauvage_elixir_orchardvn_hinh3.jpg" onclick="showImg(this.src)">
-                             </div>
-                             <div class="small-img">
-                                 <img src="Image_Perfume/Dior-Sauvage-edp-1-orchard.jpg" onclick="showImg(this.src)">
-                             </div>
-                             <div class="small-img">
-                                 <img src="Image_Perfume/dior-sauvage-edp-orchard.jpeg" onclick="showImg(this.src)">
-                             </div>
-                             <div class="small-img">
-                                 <img src="Image_Perfume/dior-sauvage-edp-orchard.vn_.webp" onclick="showImg(this.src)">
-                             </div>
+                             <% }
+                             %>
                          </div>
                  </div>
 
                  <div class="right">
                     <div class="url">Product > Perfume</div>
                     <div class="pname">Dior Versace Elixir Orchard</div>
-                    <div class="ratings">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
                     <div class="price">10.000VND</div>
                     <div class="quantity">
                         <p>Quantity :</p>

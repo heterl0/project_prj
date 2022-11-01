@@ -4,6 +4,9 @@
     Author     : Heterl0
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.daos.BrandDAO"%>
+<%@page import="com.daos.AccountDAO"%>
 <%@page import="com.models.Customer"%>
 <%@page import="com.daos.CustomerDAO"%>
 <%@page import="com.models.Account"%>
@@ -45,33 +48,58 @@
                     if (c.getName().equals("account_id")) {
                         isLogin = true;
                         account_id = c.getValue();
-                        CustomerDAO dao = new CustomerDAO();
-                        Customer customer = dao.getCustomerByAccountID(Integer.parseInt(account_id));
-                        
-                        customer_fullName = customer.getCustomer_name();
-                        String[] s = customer_fullName.split(" ");
-                        customer_name   = s[s.length - 1];
+                        Account account = (new AccountDAO()).getAccountBy(account_id);
+                        if (account.getAccount_role() == 2) {
+                            CustomerDAO dao = new CustomerDAO();
+                            Customer customer = dao.getCustomerByAccountID(Integer.parseInt(account_id));
+
+                            customer_fullName = customer.getCustomer_name();
+                            String[] s = customer_fullName.split(" ");
+                            customer_name = s[s.length - 1];
+                            role_id = 2;
+                        } else {
+                            customer_name = account.getAccount_phone();
+                            role_id = 1;
+                        }
                     }
                 }
             }
         %>
         <header class="header_section">
+            <%
+                if (role_id != 1) {
+            %>
             <div class="container">
                 <nav class="navbar navbar-expand-lg custom_nav-container ">
                     <a class="navbar-brand" href="index.jsp"><img width="250" src="Assest/Logo.png" alt="#" /></a>
                     <button  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class=""> </span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Nước hoa</a>
+                                <a class="nav-link" href="product.jsp">Nước hoa</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="product.html">New Arrival</a>
+                                <a class="nav-link" href="newarrival.jsp">New Arrival</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="blog_list.html">Nhãn Hiệu</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Nhãn Hiệu<span
+                                            class="caret"></span></a>
+                                            <%
+                                                BrandDAO brandDAO = new BrandDAO();
+                                                ResultSet brandSet = brandDAO.getAll();
+                                            %>
+                                <ul class="dropdown-menu position-absolute">
+                                    <% 
+                                        while (brandSet.next()) {
+                                    %>
+                                    <li><a href="Product_brand.jsp?brand_id=<%= brandSet.getInt("brand_id")%>"><%= brandSet.getString("brand_name")%></a></li>
+                                    <% 
+                                        }
+                                    %>
+                                </ul>
                             </li>
                             <%
                                 if (isLogin) {
@@ -93,7 +121,7 @@
                                    aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Account <span
                                             class="caret"></span></a>
                                 <ul class="dropdown-menu position-absolute">
-                                    <li><a href="signup.jsp">Đăng kí</a></li>
+                                    <li><a href="signup.jsp">Đăng ký</a></li>
                                     <li><a href="signin.jsp">Đăng nhập</a></li>
                                 </ul>
                             </li>
@@ -141,6 +169,43 @@
                     </div>
                 </nav>
             </div>
+            <%
+                } else {
+            %>
+            
+            <div class="container">
+                <nav class="navbar navbar-expand-lg custom_nav-container ">
+                    <a class="navbar-brand" href="index.jsp"><img width="250" src="Assest/Logo.png" alt="#" /></a>
+                    <button  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class=""> </span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Quản lí sản phẩm</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Quản lí tài khoản</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Quản lí đơn hàng</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="true"> <span class="nav-label"><%= "Xin chào " + customer_name%><span
+                                            class="caret"></span></a>
+                                <ul class="dropdown-menu position-absolute">
+                                    <li><a href="#">Thông tin</a></li>
+                                    <li><a onclick="return confirm('Bạn có thật sự muốn đăng xuất?');"href="SignInServlet?signout=true">Đăng xuất</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <%
+                }
+            %>
         </header>
         <!-- jQery -->
         <script src="js/jquery-3.4.1.min.js"></script>

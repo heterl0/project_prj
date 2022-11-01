@@ -184,7 +184,7 @@
                     <h1 align="left">Đăng Nhập</h1>
                     <form method="post" action="SignInServlet">
                         <div class="txt_txtfield">
-                            <input type="text" required name="txtPhone" id="txtPhone">
+                            <input type="txt" autocapitalize="none" required name="txtPhone" id="txtPhone">
                             <span></span>  
                             <label>Number phone</label>
                         </div>
