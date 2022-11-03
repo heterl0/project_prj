@@ -1,0 +1,165 @@
+
+.btn {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 24px;
+}
+
+.form-paying {
+    display: block;
+    margin-top: 28px;
+}
+
+.form-customer-info {
+    width: 100%;
+}
+
+.form-heading-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.form-heading {
+    font-size: 20px;
+    color: #444;
+}
+
+.form-heading-logo img {
+    width: 86px;
+    height: 36px;
+}
+
+.form-control {
+    margin-bottom: 8px;
+}
+
+.form-label {
+    font-size: 17px;
+    color: #444;
+}
+
+.form-control input {
+    width: 100%;
+    height: 40px;
+    padding-left: 8px;
+}
+
+.form-customer-note {
+    height: 60px;
+}
+
+.form-customer-paying {
+    display: flex;
+    margin-top: 8px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+}
+
+.form-group label {
+    margin-left: 4px;
+}
+
+.form-customer-paying .form-group input {
+    width: 14px;
+    height: 14px;
+}
+
+.form-note-register {
+    margin: 12px 0px 42px 0px;
+}
+.form-note-register span {
+    font-weight: 500;
+    color: #444;
+}
+
+.form-note-register a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-label-paying {
+    margin-bottom: 0px;
+}
+
+/* 2. Table product  */
+.table-product  {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.product-paying-img img{
+    width: 50px;
+    height: 50px;
+}
+
+.product-paying-price ,.table-paying-price{
+    font-weight: bold;
+}
+
+.table-product-header {
+    font-size: 16px;
+}
+
+.table-product tbody tr td{
+    font-size: 14px;
+}
+
+
+/* 3. Table Paying */
+.table-paying {
+    max-width: 460px;
+    margin-bottom: 16px;
+}
+
+.table-paying-label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.table-paying-vourcher {
+    height: 36px;
+    padding-left: 6px;
+}
+
+.table-paying-vourcher-btn {
+    margin: 0px 0px 5px 6px;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 9px 24px;
+}
+
+.table-paying-total {
+    font-weight: bold;
+    font-size: 18px;
+    color: var(--main-btn-color);
+}
+
+.form-paying-btn-group {
+    margin-top: 12px;
+    margin-bottom: 56px;
+}
+
+.form-paying-btn p {
+    color: #555;
+    font-size: 15px;
+}
+.form-paying-btn-group button a {
+    text-decoration: none;
+    color: white;
+}
+
+.btn-order {
+    margin-left: 12px;
+}
