@@ -125,7 +125,7 @@ public class SignUpServlet extends HttpServlet {
             int id = accountDAO.getSize() + Integer.parseInt(phone.substring(6));
             accountDAO.addNew(new Account(id, phone, getM5D(pass), 2));
             customerDAO.addNew(new Customer(id, id, name, email, address));
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("signup.jsp?status=successful");
         }
     }
 

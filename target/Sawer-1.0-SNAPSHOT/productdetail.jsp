@@ -246,7 +246,7 @@
                                                         <a href="product.jsp?gioitinh=<%= product.getProduct_sex()%>">Nước
                                                             hoa <%= product.getProduct_sex()%></a> >
                                                         <a
-                                                            href="product.jsp?gioitinh=<%= product.getProduct_sex()%>?brand=<%= bdao.getBrandName(product.getBrand_id())%>">
+                                                            href="productbrand.jsp?brand_id=<%= product.getBrand_id()%>">
                                                             <%= bdao.getBrandName(product.getBrand_id())%>
                                                         </a>
                                                     </div>

@@ -34,6 +34,7 @@
             <!-- header section strats -->
             <%@include file="header.jsp" %>
             <!-- end header section -->
+            
             <!-- slider section -->
             <section class="slider_section ">
                 <div class="slider_bg_box">
@@ -57,7 +58,7 @@
                                                 Có nước hoa đến từ hầu hết các nhãn hiệu.
                                             </p>
                                             <div class="btn-box">
-                                                <a href="" class="btn1">
+                                                <a href="product.jsp" class="btn1">
                                                     Shop Now
                                                 </a>
                                             </div>
@@ -392,7 +393,7 @@
                             %>  
                         </div>
                         <div class="btn-box">
-                            <a href="">
+                            <a href="newarrival.jsp">
                                 View All products
                             </a>
                         </div>
@@ -452,7 +453,7 @@
                     </div>
                 </div>
                 <div class="btn-box">
-                    <a href="">
+                    <a href="product.jsp">
                         View All products
                     </a>
                 </div>
