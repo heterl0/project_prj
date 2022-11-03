@@ -8,6 +8,10 @@
         <servlet-name>SignInServlet</servlet-name>
         <servlet-class>com.servlets.SignInServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AccountServlet</servlet-name>
+        <servlet-class>com.servlets.AccountServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUpSerlvet</servlet-name>
         <url-pattern>/SignUpServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>SignInServlet</servlet-name>
         <url-pattern>/SignInServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccountServlet</servlet-name>
+        <url-pattern>/AccountServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

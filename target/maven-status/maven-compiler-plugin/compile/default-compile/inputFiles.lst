@@ -1,7 +1,8 @@
-D:\Code\JavaWeb\test\src\main\java\com\servlets\SignUpServlet.java
-D:\Code\JavaWeb\test\src\main\java\com\models\Customer.java
-D:\Code\JavaWeb\test\src\main\java\com\daos\AccountDAO.java
-D:\Code\JavaWeb\test\src\main\java\com\db\DBConnection.java
-D:\Code\JavaWeb\test\src\main\java\com\models\Account.java
-D:\Code\JavaWeb\test\src\main\java\com\daos\CustomerDAO.java
-D:\Code\JavaWeb\test\src\main\java\com\servlets\SignInServlet.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\servlets\SignUpServlet.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\db\DBConnection.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\servlets\AccountServlet.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\daos\AccountDAO.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\models\Customer.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\servlets\SignInServlet.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\daos\CustomerDAO.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\models\Account.java
