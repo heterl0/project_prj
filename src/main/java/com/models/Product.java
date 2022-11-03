@@ -4,6 +4,8 @@
  */
 package com.models;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author Heterl0
@@ -155,6 +157,10 @@ public class Product {
     public void setProduct_volumes(ProductVolume[] product_volumes) {
         this.product_volumes = product_volumes;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Product{" + "product_id=" + product_id + ", brand_id=" + brand_id + ", product_sex=" + product_sex + ", product_concentration=" + product_concentration + ", product_release_year=" + product_release_year + ", product_style=" + product_style + ", product_origin=" + product_origin + ", product_founder=" + product_founder + ", product_sold=" + product_sold + ", product_main_scent=" + product_main_scent + ", product_fragrance_group=" + product_fragrance_group + ", product_name=" + product_name + ", product_image=" + product_image + ", product_volumes=" + product_volumes + '}';
+    }
     
 }

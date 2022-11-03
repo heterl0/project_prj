@@ -145,10 +145,10 @@ public class SignUpServlet extends HttpServlet {
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(SignUpServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-                    return hashtext;
+        return hashtext;
 
     }
-    
+
     /**
      * Returns a short description of the servlet.
      *

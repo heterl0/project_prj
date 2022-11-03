@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  *
@@ -22,23 +24,44 @@ import java.util.logging.Logger;
  */
 public class ProductDAO {
 
+    private Product[] products;
+
+    public Product[] getProducts() {
+        return products;
+    }
+    
     Connection conn;
 
     public ProductDAO() {
         try {
             conn = DBConnection.getConnection();
+            products = getAllProducts();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public Product[] getAllProducts() {
+        Product[] products = new Product[getSize()];
+        ResultSet rs = getAll();
+        int count = 0;
+        try {
+            while (rs.next()) {
+                products[count++] = getProduct(rs.getInt("product_id"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return products;
+    }
 
     public ResultSet getAll() {
         ResultSet rs = null;
         try {
             Statement st = conn.createStatement();
-            rs = st.executeQuery("Select * from Account");
+            rs = st.executeQuery("Select * from Product");
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -56,8 +79,8 @@ public class ProductDAO {
                     rs.getNString("product_sex"), rs.getNString("product_concentration"),
                     rs.getString("product_release_year"), rs.getNString("product_style"),
                     rs.getNString("product_origin"), rs.getNString("product_founder"),
-                    rs.getInt("product_sold"), rs.getNString("rs.getNString(\"product_origin\")"),
-                    rs.getNString("product_fragrance_group"), rs.getNString("product_oname"),
+                    rs.getInt("product_sold"), rs.getNString("product_main_scent"),
+                    rs.getNString("product_fragrance_group"), rs.getNString("product_name"),
                     getProductImage(product_id), (new VolumeDAO()).getProductVolumesByProductId(product_id));
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -129,7 +152,7 @@ public class ProductDAO {
         ResultSet rs = null;
         try {
             Statement st = conn.createStatement();
-            rs = st.executeQuery("Select * from Account");
+            rs = st.executeQuery("Select * from Product");
             while (rs.next()) {
                 count++;
             }
@@ -153,5 +176,27 @@ public class ProductDAO {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return count;
+    }
+    
+    public Product[] getProductOrderByReleaseYear() {
+        Product[] products = this.products;
+        Arrays.sort(products, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return   Integer.parseInt(o2.getProduct_release_year()) - Integer.parseInt(o1.getProduct_release_year()); 
+            }
+        });
+        return products;
+    }
+    
+    public Product[] getProductOrderByMostSold() {
+        Product[] products = this.products;
+        Arrays.sort(products, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return  o2.getProduct_sold() - o1.getProduct_sold(); 
+            }
+        });
+        return products;
     }
 }
