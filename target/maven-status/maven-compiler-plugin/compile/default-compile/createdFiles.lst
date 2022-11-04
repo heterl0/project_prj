@@ -1,8 +1,10 @@
 com\daos\AccountDAO.class
 com\servlets\AccountServlet.class
+com\daos\ProductDAO$1.class
 com\db\DBConnection.class
 com\models\Customer.class
 com\servlets\SignInServlet.class
 com\daos\CustomerDAO.class
 com\servlets\SignUpServlet.class
+com\daos\ProductDAO$2.class
 com\models\Account.class
