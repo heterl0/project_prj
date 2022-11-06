@@ -4,18 +4,26 @@
  */
 package com.servlets;
 
-import com.daos.AccountDAO;
+import com.daos.BillDAO;
+import com.daos.CartDAO;
 import com.daos.CustomerDAO;
+import com.daos.OrderDAO;
+import com.models.Bill;
+import com.models.CartProduct;
+import com.models.Customer;
+import com.models.Order;
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.*;
 import jakarta.servlet.http.*;
+import jakarta.servlet.*;
+import java.sql.Date;
+import java.util.Calendar;
 
 /**
  *
- * @author LeThiThuyVy_CE160174
+ * @author Heterl0
  */
-public class AccountServlet extends HttpServlet {
+public class AddBillServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,10 +42,10 @@ public class AccountServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AccountServlet</title>");
+            out.println("<title>Servlet AddBillServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AccountServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddBillServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -55,19 +63,7 @@ public class AccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String path = request.getRequestURI();
-        if (path.startsWith("/AccountServlet/Delete")) {
-            String[] s = path.split("/");
-            String c_id = s[s.length - 2];
-            String a_id = s[s.length - 1];
-            CustomerDAO dao = new CustomerDAO();
-            AccountDAO dao1 = new AccountDAO();
-            int customer_id = Integer.parseInt(c_id);
-            int account_id = Integer.parseInt(a_id);
-            dao.delete(customer_id);
-            dao1.delete(account_id);
-            response.sendRedirect(request.getContextPath() + "/list.jsp");
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -81,7 +77,43 @@ public class AccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        if (request.getParameter("btnSubmit") != null) {
+            int customer_id = 0;       
+
+            String customer_name = request.getParameter("txtName");
+            String customer_email = request.getParameter("txtEmail");
+            String customer_address = request.getParameter("txtAddress");
+            for (Cookie c: request.getCookies()) {
+                if (c.getName().equals("account_id")) {
+                    customer_id = Integer.parseInt(c.getValue());
+                }
+            }
+            Customer c = new Customer(customer_id, customer_id, customer_name, customer_email, customer_address);
+            CustomerDAO cdao = new CustomerDAO();
+            cdao.update(c);
+            Bill newBill = new Bill();
+            BillDAO billDAO = new BillDAO();
+            newBill.setBill_id(billDAO.getSize() + 1);
+            newBill.setCustomer_id(customer_id);
+            
+            newBill.setBill_date(new Date(Calendar.getInstance().getTime().getTime()));
+            newBill.setBill_state("processing");
+            newBill.setTotal_money(0);
+            billDAO.addNew(newBill);
+            CartDAO cartDAO = new CartDAO();
+            int totalMoney = 0;
+            OrderDAO orderDAO = new OrderDAO();
+            for (CartProduct cp :  cartDAO.getCartsByCustomerID(customer_id)) {
+                Order order = new Order(cp.getProduct(), newBill.getBill_id(), cp.getQuantity(), cp.getVolume());
+                orderDAO.addNew(order);
+                totalMoney += cp.getProduct().getPriceByVolume(cp.getVolume()) * cp.getQuantity();
+                cartDAO.delete(cp);
+                
+            }
+            newBill.setTotal_money(totalMoney);
+            billDAO.updateTotalMoney(newBill.getBill_id(), totalMoney);
+            response.sendRedirect("index.jsp");
+        }
     }
 
     /**

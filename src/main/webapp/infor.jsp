@@ -4,6 +4,10 @@
     Author     : Nguyen Truong Quoc Duy Ce160380
 --%>
 
+<%@page import="com.models.Order"%>
+<%@page import="com.daos.OrderDAO"%>
+<%@page import="com.models.Bill"%>
+<%@page import="com.daos.BillDAO"%>
 <%@page import="com.models.CartProduct"%>
 <%@page import="com.models.ProductVolume"%>
 <%@page import="com.daos.CartDAO"%>
@@ -73,8 +77,8 @@
             font-size: 15px;
         }
 
-        td img{
-            width: 180px;
+        .small_image img {
+            width: 50px;
             height: auto;
             margin-right: 10px;
         }
@@ -136,6 +140,7 @@
         });
     </script>
     <body class="sub_page">
+
         <div class="hero_area">
             <!-- header section strats -->
             <%@include file="header.jsp" %>
@@ -147,7 +152,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="full">
-                            <h3>Giỏ hàng</h3>
+                            <h3>Thông tin cá nhân</h3>
                         </div>
                     </div>
                 </div>
@@ -157,71 +162,81 @@
         <!-- product section -->
         <section class="product_section layout_padding">
             <div class="container-fluid">
-                <%                 if (!isLogin) {
+                <%                    if (!isLogin) {
                 %>
-                <h1 align="center" style="color: red;   "><strong><a href="signin.jsp">Đăng nhập</a> để thêm giỏ hàng!</strong></h1>
+                <h1 align="center" style="color: red;   "><strong><a href="signin.jsp">Đăng nhập</a> để xem thông tin!</strong></h1>
 
                 <%
                 } else {
-                    CartDAO cartDAO = new CartDAO();
-                    if (cartDAO.getCartsByCustomerID(Integer.parseInt(account_id)) == null || cartDAO.getCartsByCustomerID(Integer.parseInt(account_id)).length == 0) {
                 %>
-                <h1 align="center" style="color: red;   "><strong>Giỏ hàng trống! <a href="signin.jsp">Về trang sản phẩm.</a></strong></h1>
-                <%
-                } else {
-                    int totalMoney = 0;
-                %>
-
-
 
                 <div class="small-container cart-page">
                     <form action="AddBillServlet" method="post">
                         <div class="row">
                             <div class="col-md-8">
+                                <%
+                                    BillDAO billDAO = new BillDAO();
+                                    if (billDAO.getBillsByCustomerID(Integer.parseInt(account_id)) == null || billDAO.getBillsByCustomerID(Integer.parseInt(account_id)).length == 0) {
+                                %>
+                                <h1 align="center" style="color: red;   "><strong>Không có đơn hàng nào <a href="product.jsp">Về trang sản phẩm.</a></strong></h1>
+                                <%
+                                } else {
+                                    int totalMoney = 0;
+                                %>
+                                <h1 class="text-center">Đơn Hàng</h1>
                                 <table>
                                     <tr>
-                                        <th><h3>Sản Phẩm</h3></th>
-                                        <th><h3>Số Lượng</h3></th>
-                                        <th><h3>Giá</h3></th>
+                                        <th>Bill ID</th>
+                                        <th>Bill Information</th>
                                     </tr>
                                     <%
-                                        for (CartProduct cartProduct : cartDAO.getCartsByCustomerID(Integer.parseInt(account_id))) {
-                                            totalMoney += cartProduct.getQuantity() * cartProduct.getProduct().getPriceByVolume(cartProduct.getVolume());
-                                            int product_id = cartProduct.getProduct().getProduct_id();
-                                            String product_volume = cartProduct.getVolume();
-                                            int product_price = cartProduct.getProduct().getPriceByVolume(cartProduct.getVolume());
-                                            String id = account_id + '/' + product_id + '/' + product_volume;
+                                        Bill[] bills = billDAO.getBillsByCustomerID(Integer.parseInt(account_id));
+                                        for (Bill bill : bills) {
                                     %>
                                     <tr>
-                                        <td>
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <img src="<%= cartProduct.getProduct().getProduct_image()[0]%>">
-                                                </div>
-                                                <div class="col-sm-7">
-                                                    <a href="productdetail.jsp?product_id=<%= product_id%>"><h4><%= cartProduct.getProduct().getProduct_name()%></h4></a>
-                                                    <p>Dung tích: <%= product_volume%></p>
-                                                    <small>Đơn giá: <%= cartDAO.formatPrice(product_price)%> VND</small>
-                                                    <br>
-                                                    <a href="AddCartServlet?customer_id=<%= account_id%>&remove_product_id=<%= product_id%>&product_volume=<%= cartProduct.getVolume()%>">Remove</a>
-                                                </div>
-                                            </div>
-                                        </td>
+                                        <td><%= bill.getBill_id()%></td>
+                                        <td><div class="dropdown">
+                                                <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                                    <div class="row">
+                                                        <div class="col-md-4 border-right-1">Date: <%= bill.getBill_date().toString()%></div>
+                                                        <div class="col-md-4 border-right-1">Status: <%= bill.getBill_state()%></div>
+                                                        <div class="col-md-4 border-right-1">Tổng tiền: <%= bill.getTotal_money()%></div>
+                                                    </div>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <%
+                                                        OrderDAO orderDAO = new OrderDAO();
+                                                        Order[] orders = orderDAO.getOrderByBillID(bill.getBill_id());
+                                                        for (Order order : orders) {
+                                                    %>
 
-                                        <td>
-                                            <h3><%= cartProduct.getQuantity()%></h3>
-                                        </td>
-                                        <td><%= cartDAO.formatPrice(cartProduct.getQuantity() * product_price)%> VND</td>
+                                                    <div class="row dropdowm-item">
+                                                        <div class="col-md-2 small_image">
+                                                            <img src="<%= order.getProduct().getProduct_image()[0]%>" alt="alt"/>
+                                                        </div>
+                                                        <div class="col-md-6"><%= order.getProduct().getProduct_name()%></div>
+                                                        <div class="col-md-1"><%= order.getVolume()%></div>
+                                                        <div class="col-md-2"><%= order.getProduct().getPriceByVolumeString(order.getVolume())%> VND</div>
+                                                        <div class="col-md-1"><%= order.getQuantity()%></div>
+                                                    </div>
+                                                    <div class="dropdown-divider"></div>
+                                                    <%
+                                                        }
+                                                    %>
+                                                </div>
+                                            </div></td>
                                     </tr>
                                     <%
                                         }
                                     %>
-
-                                </table></div>
+                                </table>
+                            </div>
+                            <%
+                                }
+                            %>
                             <div class="offset-md-1 col-md-3">
                                 <div class="flex-row">
-                                    <h3 class="total-price-txt">Tổng tiền:</h3>
-                                    <h4><%= cartDAO.formatPrice(totalMoney)%> VND</h4>
+                                    <h3 class="text-center">Chỉnh sửa thông tin</h3>
                                     <%
                                         CustomerDAO customerDAO = new CustomerDAO();
                                         AccountDAO accountDAO = new AccountDAO();
@@ -235,8 +250,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="txtPhone">Số điện thoại</label>
-                                        <input name="txtPhone" type="text" class="form-control" id="txtPhone" aria-describedby="phoneHelp" placeholder="Nhập số điện thoại" value="<%= accountDAO.getAccountBy(account_id).getAccount_phone()%>"readonly>
+                                        <input name="txtPhone" type="text" class="form-control" id="txtPhone" aria-describedby="phoneHelp" placeholder="Nhập số điện thoại" value="<%= accountDAO.getAccountBy(account_id).getAccount_phone()%>">
                                         <small id="phoneHelp" class="form-text text-muted"></small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtPhone">Mật khẩu</label>
+                                        <input name="txtPass" type="password" class="form-control" id="txtPhone" aria-describedby="passHelp" placeholder="Nhập số mật khẩu" value="<%= accountDAO.getAccountBy(account_id).getAccount_pass()%>">
+                                        <small id="passHelp" class="form-text text-muted"></small>
                                     </div>
                                     <div class="form-group">
                                         <label for="txtEmail">Địa chỉ Email</label>
@@ -248,8 +268,7 @@
                                         <input name="txtAddress" type="text" class="form-control" id="txtAddress" aria-describedby="addressHelp" placeholder="Nhập địa chỉ" value="<%= customer.getCustomer_address()%>" required>
                                         <small id="addressHelp" class="form-text text-muted"></small>
                                     </div>
-                                    <input type="submit" name="btnSubmit" class="btn btn-primary btn-color" value="Thanh toán">
-
+                                    <input type="submit" name="btnSubmit" class="btn btn-primary btn-color" value="Chỉnh sửa">
                                 </div>
                             </div>
                         </div>
@@ -257,7 +276,6 @@
                 </div>
             </div>
             <%
-                    }
                 }
             %>
         </div>

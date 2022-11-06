@@ -500,6 +500,14 @@ a:focus {
   background-color: #f7444e;
   border: 1px solid #f7444e;
   color: #ffffff;
+  display: inline-block;
+  padding: 8px 15px;
+  border-radius: 30px;
+  width: 165px;
+  text-align: center;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  margin: 5px 0;
 }
 
 .product_section .options .option1:hover {

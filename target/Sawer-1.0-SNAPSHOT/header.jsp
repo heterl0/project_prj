@@ -19,7 +19,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="images/favicon.png" type="">
-        <title>Famms - Fashion HTML Template</title>
+        <title>Sawer - Website bán nước hoa hàng đầu</title>
         <!-- bootstrap core css -->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
         <!-- font awesome style -->
@@ -109,7 +109,7 @@
                                    aria-haspopup="true" aria-expanded="true"> <span class="nav-label"><%= "Xin chào " + customer_name%><span
                                             class="caret"></span></a>
                                 <ul class="dropdown-menu position-absolute">
-                                    <li><a href="#">Thông tin</a></li>
+                                    <li><a href="infor.jsp">Thông tin</a></li>
                                     <li><a onclick="return confirm('Bạn có thật sự muốn đăng xuất?');"href="SignInServlet?signout=true">Đăng xuất</a></li>
                                 </ul>
                             </li>
@@ -195,7 +195,7 @@
                                    aria-haspopup="true" aria-expanded="true"> <span class="nav-label"><%= "Xin chào " + customer_name%><span
                                             class="caret"></span></a>
                                 <ul class="dropdown-menu position-absolute">
-                                    <li><a href="#">Thông tin</a></li>
+                                    <!--<li><a href="#">Thông tin</a></li>-->
                                     <li><a onclick="return confirm('Bạn có thật sự muốn đăng xuất?');"href="SignInServlet?signout=true">Đăng xuất</a></li>
                                 </ul>
                             </li>
