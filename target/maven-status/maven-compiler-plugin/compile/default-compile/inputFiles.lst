@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\servlets\SignUpServlet.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\daos\AccountDAO.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\daos\ProductDAO.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\models\Customer.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\models\ProductVolume.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\servlets\SignInServlet.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\models\Brand.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\daos\BrandDAO.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\models\Product.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\db\DBConnection.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\servlets\AccountServlet.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\daos\VolumeDAO.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\daos\CustomerDAO.java
+C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\models\Account.java
+=======
 D:\Code\JavaWeb\test\src\main\java\com\servlets\SignUpServlet.java
 D:\Code\JavaWeb\test\src\main\java\com\models\Order.java
 D:\Code\JavaWeb\test\src\main\java\com\servlets\AddCartServlet.java
@@ -20,3 +36,4 @@ D:\Code\JavaWeb\test\src\main\java\com\daos\ProductDAO.java
 D:\Code\JavaWeb\test\src\main\java\com\models\Account.java
 D:\Code\JavaWeb\test\src\main\java\com\daos\BillDAO.java
 D:\Code\JavaWeb\test\src\main\java\com\servlets\SignInServlet.java
+>>>>>>> aca2e87e486c2d81e0aec9b4270b5650c6cda525

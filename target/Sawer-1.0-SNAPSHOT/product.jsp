@@ -21,7 +21,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <link rel="shortcut icon" href="Assest/Logo.png" type="">
-        <title>Famms - Fashion HTML Template</title>
+        <title>Sawer - Website bán nước hoa hàng đầu</title>
         <!-- bootstrap core css -->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
         <!-- font awesome style -->
@@ -30,7 +30,9 @@
         <link href="css/style.css" rel="stylesheet" />
         <!-- responsive style -->
         <link href="css/responsive.css" rel="stylesheet" />
+        <link rel="stylesheet" href="style.css">
     </head>
+  
     <body class="sub_page">
         <div class="hero_area">
             <!-- header section strats -->
@@ -58,8 +60,13 @@
                         Nước hoa <span>của chúng tôi</span>
                     </h2>
                 </div>
+<<<<<<< HEAD
                 <a class="btn btn-danger dropdown-toggle mr-4" style="color:white" type="button" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false">Sắp xếp</a>
+=======
+                <a class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false"style="background-color : rgb(0, 191, 255);" border="1">Sắp xếp</a>
+>>>>>>> b40e5e36abb228bc068c720dfc94fe5175b43451
 
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="product.jsp?sortby=a_z">A-Z</a>

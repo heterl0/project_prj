@@ -1,8 +1,15 @@
 com\daos\VolumeDAO.class
 com\daos\AccountDAO.class
+<<<<<<< HEAD
 com\servlets\AddBillServlet.class
 com\daos\BillDAO.class
+=======
+<<<<<<< HEAD
+com\servlets\AccountServlet.class
+=======
+>>>>>>> b40e5e36abb228bc068c720dfc94fe5175b43451
 com\daos\ProductDAO$6.class
+>>>>>>> aca2e87e486c2d81e0aec9b4270b5650c6cda525
 com\daos\ProductDAO$1.class
 com\models\Order.class
 com\db\DBConnection.class
@@ -14,6 +21,8 @@ com\models\Brand.class
 com\models\Bill.class
 com\servlets\SignUpServlet.class
 com\daos\ProductDAO$2.class
+<<<<<<< HEAD
+=======
 com\servlets\AccountServlet.class
 com\models\CartProduct.class
 com\servlets\AddCartServlet.class
@@ -24,5 +33,9 @@ com\models\ProductVolume.class
 com\daos\CartDAO.class
 com\models\Product.class
 com\daos\ProductDAO$3.class
+<<<<<<< HEAD
 com\daos\OrderDAO.class
+=======
+>>>>>>> aca2e87e486c2d81e0aec9b4270b5650c6cda525
+>>>>>>> b40e5e36abb228bc068c720dfc94fe5175b43451
 com\models\Account.class
