@@ -55,7 +55,9 @@
                         <th scope="col">Edit</th>
                     </tr>
                 </thead>
-                <%                    ProductDAO dao = new ProductDAO();
+                <%                    
+                    
+                    ProductDAO dao = new ProductDAO();
                     Product[] products = dao.getAllProducts();
                     BrandDAO bdao = new BrandDAO();
                     for (Product product : products) {

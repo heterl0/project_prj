@@ -21,6 +21,8 @@ public class DBConnection {
 //        String url = "jdbc:sqlserver://MSI\\SQLEXPRESS:1433;databaseName=PRJ_Project;user=sa;password=1;encrypt=true;trustServerCertificate=true;";
 //        String url = "jdbc:sqlserver://DESKTOP-DMGANA5\\SQLEXPRESS01:1433;databaseName=PRJ_Project;user=sa;password=1;encrypt=true;trustServerCertificate=true;";
             String url = "jdbc:sqlserver://THINKPAD-E15\\SQLEXPRESS01:1433;databaseName=PRJ_Project;user=sa;password=123456;encrypt=true;trustServerCertificate=true";
+//            String url = "jdbc:sqlserver://DESKTOP-DMGANA5\\SQLEXPRESS01:1433;databaseName=PRJ_Project;user=sa;password=1;encrypt=true;trustServerCertificate=true";
+        
 conn = DriverManager.getConnection(url) ;
         return conn;
     }

@@ -158,6 +158,37 @@ public class Product {
         this.product_volumes = product_volumes;
     }
 
+    
+    public int getPriceByVolume(String volume) {
+        for (ProductVolume pv : product_volumes) {
+            if (pv.getProduct_volume().equals(volume)) {
+                
+                return Integer.parseInt(pv.getProduct_price().replace(".", ""));
+            }
+        }
+        return 0;
+    }
+    
+    public String getPriceByVolumeString(String volume) {
+        for (ProductVolume pv : product_volumes) {
+            if (pv.getProduct_volume().equals(volume)) {
+                
+                return pv.getProduct_price().replace(".", "");
+            }
+        }
+        return "";
+    }
+    
+    public int getLeftByVolume(String volume) {
+        for (ProductVolume pv : product_volumes) {
+            if (pv.getProduct_volume().equals(volume)) {
+                
+                return pv.getProduct_pcs_left();
+            }
+        }
+        return 0;
+    }
+    
     @Override
     public String toString() {
         return "Product{" + "product_id=" + product_id + ", brand_id=" + brand_id + ", product_sex=" + product_sex + ", product_concentration=" + product_concentration + ", product_release_year=" + product_release_year + ", product_style=" + product_style + ", product_origin=" + product_origin + ", product_founder=" + product_founder + ", product_sold=" + product_sold + ", product_main_scent=" + product_main_scent + ", product_fragrance_group=" + product_fragrance_group + ", product_name=" + product_name + ", product_image=" + product_image + ", product_volumes=" + product_volumes + '}';

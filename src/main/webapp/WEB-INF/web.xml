@@ -12,6 +12,10 @@
         <servlet-name>AccountServlet</servlet-name>
         <servlet-class>com.servlets.AccountServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddCartServlet</servlet-name>
+        <servlet-class>com.servlets.AddCartServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUpSerlvet</servlet-name>
         <url-pattern>/SignUpServlet</url-pattern>
@@ -23,6 +27,13 @@
     <servlet-mapping>
         <servlet-name>AccountServlet</servlet-name>
         <url-pattern>/AccountServlet/*</url-pattern>
+<<<<<<< HEAD
+=======
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddCartServlet</servlet-name>
+        <url-pattern>/AddCartServlet</url-pattern>
+>>>>>>> 7f49c82bdbb36aa0ea39b3d5b23aaa8205c89e4b
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,8 +1,11 @@
 D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\db\DBConnection.java
 D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\servlets\SignInServlet.java
 D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\models\Product.java
+D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\servlets\AddCartServlet.java
 D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\daos\ProductDAO.java
 D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\servlets\AccountServlet.java
+D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\daos\CartDAO.java
+D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\models\CartProduct.java
 D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\models\Brand.java
 D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\servlets\SignUpServlet.java
 D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\daos\AccountDAO.java

@@ -2,14 +2,17 @@ com\daos\VolumeDAO.class
 com\daos\AccountDAO.class
 com\servlets\AccountServlet.class
 com\daos\ProductDAO$6.class
+com\models\CartProduct.class
 com\daos\ProductDAO$1.class
 com\db\DBConnection.class
+com\servlets\AddCartServlet.class
 com\daos\ProductDAO$5.class
 com\daos\ProductDAO.class
 com\models\Customer.class
 com\servlets\SignInServlet.class
 com\models\ProductVolume.class
 com\daos\BrandDAO.class
+com\daos\CartDAO.class
 com\daos\ProductDAO$4.class
 com\daos\CustomerDAO.class
 com\models\Product.class
