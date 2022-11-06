@@ -6,12 +6,16 @@ package com.servlets;
 
 import com.daos.AccountDAO;
 import com.daos.CustomerDAO;
+import com.models.Account;
+import com.models.Customer;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.sql.Date;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -58,7 +62,7 @@ public class AccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String path = request.getRequestURI();
-        if (path.startsWith("/AccountServlet/Delete")) {
+        if (path.startsWith("/Sawer/AccountServlet/Delete")) {
             String[] s = path.split("/");
             String c_id = s[s.length - 2];
             String a_id = s[s.length - 1];
@@ -68,7 +72,27 @@ public class AccountServlet extends HttpServlet {
             int account_id = Integer.parseInt(a_id);
             dao.delete(customer_id);
             dao1.delete(account_id);
-            response.sendRedirect(request.getContextPath() + "/list.jsp");
+            response.sendRedirect("/Sawer/listAccount.jsp");
+        } else if (path.startsWith("/Sawer/AccountServlet/Update")) {
+            String[] s = path.split("/");
+            String c_id = s[s.length - 2];
+            String a_id = s[s.length - 1];
+            CustomerDAO dao = new CustomerDAO();
+            int account_id = Integer.parseInt(a_id);
+            Customer c = dao.getCustomerByAccountID(account_id);
+
+            AccountDAO dao1 = new AccountDAO();
+            Account a = dao1.getAccountBy(a_id);
+            int customer_id = Integer.parseInt(c_id);
+
+            if (a == null || c == null) {
+                response.sendRedirect("/listAccount.jsp");
+            } else {
+                HttpSession session = request.getSession();
+                session.setAttribute("account", a);
+                session.setAttribute("customer", c);
+                request.getRequestDispatcher("/updateAccount.jsp").forward(request, response);
+            }
         }
     }
 
@@ -83,7 +107,27 @@ public class AccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String account_pass, account_phone, customer_address, customer_email, customer_name;
+        int account_id, account_role;
+        if (request.getParameter("btnUpdateAccount") != null) {
+            account_id = Integer.getInteger(request.getParameter("txtAccountid"));
+            account_pass = request.getParameter("txtpass");
+            account_phone = request.getParameter("txtphone");
+            account_role = Integer.getInteger(request.getParameter("txtRoleid"));
+            Account a = new Account(account_id, account_phone, account_pass, account_role);
+            AccountDAO dao = new AccountDAO();
+
+            customer_address = request.getParameter("txtAddr");
+            customer_email = request.getParameter("txtEmail");
+            customer_name = request.getParameter("txtFullname");
+            Customer c = new Customer(account_id, account_id, customer_name, customer_email, customer_address);
+            CustomerDAO dao1 = new CustomerDAO();
+
+            dao.update(a);
+            dao1.update(c);
+
+            response.sendRedirect("/Sawer/listAccount.jsp");
+        }
     }
 
     /**

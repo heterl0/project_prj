@@ -9,10 +9,10 @@ package com.models;
  * @author Heterl0
  */
 public class Account {
-    private int account_id;
-    private String account_phone;
-    private String account_pass;
-    private int account_role;
+    public int account_id;
+    public String account_phone;
+    public String account_pass;
+    public int account_role;
 
     public Account() {
     }

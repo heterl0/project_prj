@@ -34,7 +34,7 @@ public class AccountDAO {
         ResultSet rs = null;
         try {
             Statement st = conn.createStatement();
-            rs = st.executeQuery("Select * from Account");
+            rs = st.executeQuery("Select * from Account where role_id=2");
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

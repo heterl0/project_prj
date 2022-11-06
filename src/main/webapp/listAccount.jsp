@@ -48,7 +48,7 @@
                         <th scope="col">Edit</th>
                     </tr>
                 </thead>
-                <%
+                <%                    
                     AccountDAO daoA = new AccountDAO();
                     CustomerDAO daoC = new CustomerDAO();
                     ResultSet rsA = daoA.getAll();
@@ -64,7 +64,9 @@
                     <td><%= rsC.getString("customer_email")%></td>
                     <td><%= rsC.getString("customer_fullName")%></td>
                     <td>
-                        <a onclick="return confirm('Are you sure?');" href="/AccountServlet/Delete/<%= rsC.getString("customer_id")%>/<%= rsA.getString("account_id")%>" class="btn btn-danger" role="button">Delete</a>
+                            <a onclick="return confirm('Are you sure?');" href="AccountServlet/Delete/<%= rsC.getString("customer_id")%>/<%= rsA.getString("account_id")%>" class="btn btn-danger" role="button">Delete</a>
+                            <a href="AccountServlet/Update/<%= rsC.getString("customer_id")%>/<%= rsA.getString("account_id")%>" class="btn btn-success" role="button">Update</a>
+                        
                     </td>
                 </tr>
                 <%
@@ -72,6 +74,6 @@
                 %>
             </table>
         </div>
-                <%@include file="footer.jsp" %>
+        <%@include file="footer.jsp" %>
     </body>
 </html>

@@ -75,10 +75,10 @@
                     <td rowspan="<%= volumes.length%>"><%= product.getProduct_sold()%></td>
 
                     <td><%= volumes[0].getProduct_volume()%></td>
-                    <td><%= volumes[0].getProduct_price()%></td>c
+                    <td><%= volumes[0].getProduct_price()%></td>
                     <td><%= volumes[0].getProduct_pcs_left()%></td>
-                    <td rowspan="<%= volumes.length%>>
-                        <a onclick="return confirm('Are you sure?');" href="/AccountServlet/Delete/<%= product.getProduct_id() %>" class="btn btn-danger" role="button">Delete</a>
+                    <td rowspan="<%= volumes.length%>"
+                        <a onclick="return confirm('Are you sure?');" href="/AccountServlet/DeleteProduct/<%= product.getProduct_id() %>" class="btn btn-danger" role="button">Delete</a>
                     </td>
                 </tr>
                 <% if (volumes.length > 1) {

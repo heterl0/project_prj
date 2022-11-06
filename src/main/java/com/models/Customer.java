@@ -9,11 +9,11 @@ package com.models;
  * @author Heterl0
  */
 public class Customer {
-    private int customer_id;
-    private int account_id;
-    private String customer_name;
-    private String customer_email;
-    private String customer_address;
+    public int customer_id;
+    public int account_id;
+    public String customer_name;
+    public String customer_email;
+    public String customer_address;
 
     public Customer() {
     }

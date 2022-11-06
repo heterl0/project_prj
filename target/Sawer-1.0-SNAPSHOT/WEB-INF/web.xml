@@ -27,13 +27,10 @@
     <servlet-mapping>
         <servlet-name>AccountServlet</servlet-name>
         <url-pattern>/AccountServlet/*</url-pattern>
-<<<<<<< HEAD
-=======
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddCartServlet</servlet-name>
         <url-pattern>/AddCartServlet</url-pattern>
->>>>>>> 7f49c82bdbb36aa0ea39b3d5b23aaa8205c89e4b
     </servlet-mapping>
     <session-config>
         <session-timeout>
