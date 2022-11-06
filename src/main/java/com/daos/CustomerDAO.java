@@ -90,19 +90,15 @@ public class CustomerDAO {
         return count;
     }
     
-    public int update(Customer customer) {
+    public int update(Customer customer) throws SQLException {
         int count = 0;
-        try {
-            PreparedStatement pst = conn.prepareStatement("Update Customer set customer_address=?, customer_email=?, customer_name=?, account_id=? where customer_id=?");
+            PreparedStatement pst = conn.prepareStatement("Update Customer set customer_address=?, customer_email=?, customer_fullName=?, account_id=? where customer_id=?");
             pst.setInt(5, customer.getCustomer_id());
             pst.setString(1, customer.getCustomer_address());
             pst.setString(2, customer.getCustomer_email());
             pst.setString(3, customer.getCustomer_name());
             pst.setInt(4, customer.getAccount_id());
             count = pst.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return count;
     }
     

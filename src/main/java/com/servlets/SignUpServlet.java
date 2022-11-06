@@ -127,6 +127,19 @@ public class SignUpServlet extends HttpServlet {
             customerDAO.addNew(new Customer(id, id, name, email, address));
             response.sendRedirect("signup.jsp?status=successful");
         }
+        if (request.getParameter("btnUpdate") != null) {
+            String phone = request.getParameter("txtPhone");
+            String pass = request.getParameter("txtPass");
+            String name = request.getParameter("txtName");
+            String email = request.getParameter("txtEmail");
+            String address = request.getParameter("txtAddress");
+            AccountDAO accountDAO = new AccountDAO();
+            CustomerDAO customerDAO = new CustomerDAO();
+            int id = accountDAO.getAccount(phone).getAccount_id();
+            accountDAO.update(new Account(id, phone, getM5D(pass), 2));
+            customerDAO.update(new Customer(id, id, name, email, address));
+            response.sendRedirect("infor.jsp");
+        }
     }
 
     private String getM5D(String pass) {

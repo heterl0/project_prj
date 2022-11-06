@@ -159,7 +159,7 @@
                                     </svg>
                                 </a>
                             </li>
-                            <form class="d-flex justify-content-between search-inner">
+                            <form class="d-flex justify-content-between search-inner" action="product.jsp?sortby=search&">
                                 <input type="text" class="form-control" id="search_input" placeholder="Search Here">
                                 <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
                                     <i class="fa fa-search" aria-hidden="true"></i>

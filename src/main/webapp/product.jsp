@@ -58,7 +58,7 @@
                         Nước hoa <span>của chúng tôi</span>
                     </h2>
                 </div>
-                <a class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
+                <a class="btn btn-danger dropdown-toggle mr-4" style="color:white" type="button" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false">Sắp xếp</a>
 
                 <div class="dropdown-menu">

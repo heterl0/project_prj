@@ -1,13 +1,17 @@
 com\daos\VolumeDAO.class
 com\daos\AccountDAO.class
+com\servlets\AddBillServlet.class
+com\daos\BillDAO.class
 com\daos\ProductDAO$6.class
 com\daos\ProductDAO$1.class
+com\models\Order.class
 com\db\DBConnection.class
 com\models\Customer.class
 com\daos\BrandDAO.class
 com\daos\ProductDAO$4.class
 com\daos\CustomerDAO.class
 com\models\Brand.class
+com\models\Bill.class
 com\servlets\SignUpServlet.class
 com\daos\ProductDAO$2.class
 com\servlets\AccountServlet.class
@@ -20,4 +24,5 @@ com\models\ProductVolume.class
 com\daos\CartDAO.class
 com\models\Product.class
 com\daos\ProductDAO$3.class
+com\daos\OrderDAO.class
 com\models\Account.class
