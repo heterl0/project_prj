@@ -1,4 +1,5 @@
 D:\Code\JavaWeb\test\src\main\java\com\servlets\SignUpServlet.java
+D:\Code\JavaWeb\test\src\main\java\com\models\Order.java
 D:\Code\JavaWeb\test\src\main\java\com\servlets\AddCartServlet.java
 D:\Code\JavaWeb\test\src\main\java\com\daos\VolumeDAO.java
 D:\Code\JavaWeb\test\src\main\java\com\models\Customer.java
@@ -6,12 +7,16 @@ D:\Code\JavaWeb\test\src\main\java\com\daos\AccountDAO.java
 D:\Code\JavaWeb\test\src\main\java\com\models\Product.java
 D:\Code\JavaWeb\test\src\main\java\com\daos\BrandDAO.java
 D:\Code\JavaWeb\test\src\main\java\com\daos\CustomerDAO.java
+D:\Code\JavaWeb\test\src\main\java\com\models\Bill.java
 D:\Code\JavaWeb\test\src\main\java\com\models\CartProduct.java
 D:\Code\JavaWeb\test\src\main\java\com\models\ProductVolume.java
 D:\Code\JavaWeb\test\src\main\java\com\daos\CartDAO.java
+D:\Code\JavaWeb\test\src\main\java\com\daos\OrderDAO.java
 D:\Code\JavaWeb\test\src\main\java\com\models\Brand.java
+D:\Code\JavaWeb\test\src\main\java\com\servlets\AddBillServlet.java
 D:\Code\JavaWeb\test\src\main\java\com\db\DBConnection.java
 D:\Code\JavaWeb\test\src\main\java\com\servlets\AccountServlet.java
 D:\Code\JavaWeb\test\src\main\java\com\daos\ProductDAO.java
 D:\Code\JavaWeb\test\src\main\java\com\models\Account.java
+D:\Code\JavaWeb\test\src\main\java\com\daos\BillDAO.java
 D:\Code\JavaWeb\test\src\main\java\com\servlets\SignInServlet.java

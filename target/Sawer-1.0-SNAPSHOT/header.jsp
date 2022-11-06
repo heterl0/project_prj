@@ -109,7 +109,7 @@
                                    aria-haspopup="true" aria-expanded="true"> <span class="nav-label"><%= "Xin chào " + customer_name%><span
                                             class="caret"></span></a>
                                 <ul class="dropdown-menu position-absolute">
-                                    <li><a href="#">Thông tin</a></li>
+                                    <li><a href="infor.jsp">Thông tin</a></li>
                                     <li><a onclick="return confirm('Bạn có thật sự muốn đăng xuất?');"href="SignInServlet?signout=true">Đăng xuất</a></li>
                                 </ul>
                             </li>
