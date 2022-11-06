@@ -1,14 +1,11 @@
-<%-- 
-    Document   : product
-    Created on : Oct 27, 2022, 5:26:00 PM
-    Author     : Nguyen Truong Quoc Duy Ce160380
---%>
+<%-- Document : product Created on : Oct 27, 2022, 5:26:00 PM Author : Nguyen Truong Quoc Duy Ce160380 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 
 <!DOCTYPE html>
 <html>
+
     <head>
         <!-- Basic -->
         <meta charset="utf-8" />
@@ -30,7 +27,7 @@
         <!-- responsive style -->
         <link href="css/responsive.css" rel="stylesheet" />
         <style>
-            .center h1{
+            .center h1 {
                 text-align: center;
                 padding: 0 0 20px 0;
             }
@@ -39,23 +36,26 @@
                 padding: 0 40px;
                 box-sizing: border-box;
             }
-            form .txt_txtfield{
+
+            form .txt_txtfield {
                 position: relative;
                 border-bottom: 2px solid #adadad;
                 margin-top: 20px;
             }
-            .txt_txtfield input{
-                width : 100%;
+
+            .txt_txtfield input {
+                width: 100%;
                 padding: 0px;
-                height:40px;
+                height: 40px;
                 font-size: 16px;
                 border: none;
-                background: none ;
+                background: none;
                 outline: none;
                 margin-bottom: 0px;
                 padding-left: 10px;
             }
-            .txt_txtfield label{
+
+            .txt_txtfield label {
                 position: absolute;
                 top: 0;
                 left: 5px;
@@ -65,14 +65,15 @@
                 pointer-events: none;
                 transition: .5s;
             }
-            .txt_txtfield input:focus ~ label,
-            .txt_txtfield input:valid ~ label{
+
+            .txt_txtfield input:focus~label,
+            .txt_txtfield input:valid~label {
                 top: -5px;
-                color:#2691d9 ;
+                color: #2691d9;
             }
 
-            .txt_txtfield input:focus ~ span::before,
-            .txt_txtfield input:valid ~ span::before{
+            .txt_txtfield input:focus~span::before,
+            .txt_txtfield input:valid~span::before {
                 width: 100%;
             }
 
@@ -81,11 +82,12 @@
                 color: white;
                 cursor: pointer;
             }
-            .pass:hover{
+
+            .pass:hover {
                 text-decoration: underline;
             }
 
-            input[type="submit"]{
+            input[type="submit"] {
 
                 width: 100%;
                 height: 50px;
@@ -99,34 +101,51 @@
                 outline: none;
             }
 
-            input[type="submit"]:hover{
-                border-color:#30D7BA ;
+            input[type="submit"]:hover {
+                border-color: #30D7BA;
                 transition: .5s;
             }
-            .signup_link{
+
+            .signup_link {
                 margin: 30px 0;
                 text-align: center;
                 font-size: 16px;
                 color: black;
             }
 
-            .signup_link a{
+            .signup_link a {
                 color: black;
                 text-decoration: none;
             }
-            .signup_link a:hover{
+
+            .signup_link a:hover {
                 text-decoration: underline;
 
             }
+
             #signin_section {
                 padding: 110px 60px;
             }
+
             .signin_button {
                 margin: 30px;
             }
 
+            .notification_signup {
+                position: fixed;
+                width: 300px;
+                height: 200px;
+                top: 30%;
+                left: 50%;
+                transform: translate(-50%, 0);
+                background-color: white;
+                z-index: 1;
+                border-radius: 10px;
+                border: 2px solid  #f7444e;
+                text-align: center;
+                padding-top: 1em;
 
-
+            }
         </style>
         <script src="https://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
         <script type="text/javascript">
@@ -187,7 +206,7 @@
                         }
                     });
                 });
-                 $('#txtEmail').blur(function (event) {
+                $('#txtEmail').blur(function (event) {
                     var email = $('#txtEmail').val();
                     $.get('SignUpServlet', {
                         checkEmail: email
@@ -215,8 +234,23 @@
             <!-- end header section -->
         </div>
         <!-- inner page section -->
-        <section id="signin_section"class="container">
-            <div  class="row">
+        <%                
+            if (request.getParameter("status") != null) {
+                if (request.getParameter("status").equals("successful")) {
+        %>
+        <div class="notification_signup">
+            <h1>Đăng ký<br>thành công</h1>
+            <form action="signin.jsp">
+                <input class="btn btn-primary" type="submit" value="Trở về đăng nhập" />
+            </form>
+        </div>
+        <%  
+                }
+            }
+        %>
+
+        <section id="signin_section" class="container">
+            <div class="row">
                 <div class="offset-lg-4 col-lg-4">
                     <h1 align="left">Đăng Ký</h1>
                     <form method="post" action="SignUpServlet">
@@ -227,7 +261,8 @@
                         </div>
                         <div class="alert alert-danger" id="errorPhone"></div>
                         <div class="txt_txtfield">
-                            <input type="password" required name="txtPass" id="txtPass" placeholder="Ex: adnnxcxz_123">
+                            <input type="password" required name="txtPass" id="txtPass"
+                                   placeholder="Ex: adnnxcxz_123">
                             <span></span>
                             <label>Password</label>
                         </div>
@@ -243,22 +278,24 @@
                             <span></span>
                             <label>Full name</label>
                         </div>
-                        <div class="txt_txtfield" >
+                        <div class="txt_txtfield">
                             <input type="email" required name="txtEmail" placeholder="Ex: lehieu99666@gmail.com">
                             <span></span>
                             <label>Email</label>
                         </div>
                         <div class="alert alert-danger" id="errorEmail"></div>
                         <div class="txt_txtfield">
-                            <input type="text" required name="txtAddress" placeholder="Ex: Can Tho, Ca Do, 81 Ap Thanh Loi">
+                            <input type="text" required name="txtAddress"
+                                   placeholder="Ex: Can Tho, Ca Do, 81 Ap Thanh Loi">
                             <span></span>
                             <label>Address</label>
                         </div>
                         <div class="signin_button">
-                            <input type="submit" value="Sign up" name="btnSignUp" id="btnSignUp">
+                            <input type="submit" value="Sign up" name="btnSignUp" id="btnSignUp" data-toggle="modal" data-target="#exampleModalCenter">
                         </div>
+
                     </form>
-            </div>
+                </div>
         </section>
         <!-- end product section -->
         <!-- footer section -->
@@ -273,4 +310,5 @@
         <!-- custom js -->
         <script src="js/custom.js"></script>
     </body>
+
 </html>

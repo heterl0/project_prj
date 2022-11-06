@@ -28,7 +28,6 @@
                             <link href="css/style.css" rel="stylesheet" />
                             <!-- responsive style -->
                             <link href="css/responsive.css" rel="stylesheet" />
-
                         </head>
                         <style>
                             /* product detail CSS */
@@ -246,7 +245,7 @@
                                                         <a href="product.jsp?gioitinh=<%= product.getProduct_sex()%>">Nước
                                                             hoa <%= product.getProduct_sex()%></a> >
                                                         <a
-                                                            href="product.jsp?gioitinh=<%= product.getProduct_sex()%>?brand=<%= bdao.getBrandName(product.getBrand_id())%>">
+                                                            href="productbrand.jsp?brand_id=<%= product.getBrand_id()%>">
                                                             <%= bdao.getBrandName(product.getBrand_id())%>
                                                         </a>
                                                     </div>

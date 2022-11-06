@@ -22,11 +22,9 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AccountServlet</servlet-name>
-<<<<<<< HEAD
-        <url-pattern>/AccountServlet</url-pattern>
-=======
+
+
         <url-pattern>/AccountServlet/*</url-pattern>
->>>>>>> 8a0769724044d91cd20da7376413056a761a1ad7
     </servlet-mapping>
     <session-config>
         <session-timeout>

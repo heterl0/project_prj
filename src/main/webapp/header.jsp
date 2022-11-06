@@ -95,7 +95,7 @@
                                     <% 
                                         while (brandSet.next()) {
                                     %>
-                                    <li><a href="Product_brand.jsp?brand_id=<%= brandSet.getInt("brand_id")%>"><%= brandSet.getString("brand_name")%></a></li>
+                                    <li><a href="productbrand.jsp?brand_id=<%= brandSet.getInt("brand_id")%>"><%= brandSet.getString("brand_name")%></a></li>
                                     <% 
                                         }
                                     %>
@@ -129,7 +129,7 @@
                                 }
                             %>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="cart.jsp">
                                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                          viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;"
@@ -182,10 +182,10 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Quản lí sản phẩm</a>
+                                <a class="nav-link" href="listProduct.jsp">Quản lí sản phẩm</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="list.jsp">Quản lí tài khoản</a>
+                                <a class="nav-link" href="listAccount.jsp">Quản lí tài khoản</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Quản lí đơn hàng</a>

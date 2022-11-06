@@ -13,9 +13,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 
 /**
@@ -189,6 +192,42 @@ public class ProductDAO {
         return products;
     }
     
+    public Product[] getProductOrderByPriceToHigh() {
+        Product[] products = this.products;
+        Arrays.sort(products, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                ProductVolume[] pv1 = o1.getProduct_volumes();
+                ProductVolume[] pv2 = o2.getProduct_volumes();
+                return Integer.parseInt(getIntString(pv1[0].getProduct_price())) - Integer.parseInt(getIntString(pv2[0].getProduct_price().replaceAll("[.]", ""))); 
+            }
+        });
+        return products;
+    }
+    
+     public Product[] getProductOrderByPriceToLow() {
+        Product[] products = this.products;
+        Arrays.sort(products, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                ProductVolume[] pv1 = o1.getProduct_volumes();
+                ProductVolume[] pv2 = o2.getProduct_volumes();
+                return 0 - Integer.parseInt(getIntString(pv1[0].getProduct_price())) + Integer.parseInt(getIntString(pv2[0].getProduct_price().replaceAll("[.]", ""))); 
+            }
+        });
+        return products;
+    }
+    
+    private String getIntString(String value) {
+        String s = "";
+        for (Character c : value.toCharArray()) {
+            if (c >= '0' && c <= '9') {
+                s += c;
+            }
+        }
+        return s;
+    }
+    
     public Product[] getProductOrderByMostSold() {
         Product[] products = this.products;
         Arrays.sort(products, new Comparator<Product>() {
@@ -198,5 +237,41 @@ public class ProductDAO {
             }
         });
         return products;
+    }
+    
+    public Product[] getProductOrderByAToZ() {
+        Product[] products = this.products;
+        Arrays.sort(products, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return  o1.getProduct_name().compareTo(o2.getProduct_name()); 
+            }
+        });
+        return products;
+    }
+    
+    public Product[] getProductOrderByZToA() {
+        Product[] products = this.products;
+        Arrays.sort(products, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return  o2.getProduct_name().compareTo(o1.getProduct_name()); 
+            }
+        });
+        return products;
+    }
+    
+    public Product[] getProductsByBrandID(int brand_id) {
+        ArrayList<Product> products = new ArrayList<>();
+        for (Product product : this.products) {
+            if (product.getBrand_id() == brand_id) {
+                products.add(product);
+            }
+        }
+        Product[] pds = new Product[products.size()];
+        for (int i = 0; i < products.size(); i++) {
+            pds[i] = products.get(i);
+        }
+        return pds;
     }
 }
