@@ -43,18 +43,33 @@ public class BrandDAO {
         return rs;
     }
     
-    public Customer getBrandById(int brand_id) {
-        Customer customer = null;
+    public Brand getBrandById(int brand_id) {
+        Brand brand = null;
         try {
             PreparedStatement pst = conn.prepareStatement("Select * from Brand where brand_id=?");
             pst.setInt(1, brand_id);
             ResultSet rs = pst.executeQuery();
             rs.next();
-            Brand brand = new Brand(rs.getInt("brand_id"), "brand_name");
+            brand = new Brand(rs.getInt("brand_id"),rs.getString("brand_name") );
         } catch (SQLException ex) {
             Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return customer;
+        return brand;
+    } 
+    
+    
+    public String getBrandName(int brand_id) {
+        String brand = null;
+        try {
+            PreparedStatement pst = conn.prepareStatement("Select * from Brand where brand_id=?");
+            pst.setInt(1, brand_id);
+            ResultSet rs = pst.executeQuery();
+            rs.next();
+            brand = rs.getString("brand_name");
+        } catch (SQLException ex) {
+            Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return brand;
     } 
     
     

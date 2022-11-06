@@ -118,7 +118,7 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="full">
-                     <h3>Cart</h3>
+                     <h3>Giỏ hàng</h3>
                   </div>
                </div>
             </div>
@@ -128,7 +128,7 @@
       <!-- product section -->
       <section class="product_section layout_padding">
          <div class="container">
-             <p align="center" style="color: red;"><strong>Đăng nhập để lưu vỏ hàng!</strong></p>
+             <p align="center" style="color: red;   "><strong>Đăng nhập để lưu vỏ hàng!</strong></p>
              
              <div class="small-container cart-page">
                  <table>
