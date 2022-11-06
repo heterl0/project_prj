@@ -27,6 +27,7 @@
         <link href="css/style.css" rel="stylesheet" />
         <!-- responsive style -->
         <link href="css/responsive.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
     </head>
 
     <body>
@@ -34,7 +35,7 @@
             <!-- header section strats -->
             <%@include file="header.jsp" %>
             <!-- end header section -->
-            
+
             <!-- slider section -->
             <section class="slider_section ">
                 <div class="slider_bg_box">
@@ -359,15 +360,39 @@
                                 for (int i = 0; i < 3; i++) {
                                     Product product = productByReleaseYear[i];
                                     ProductVolume[] volumes = product.getProduct_volumes();
+                                    String volume_name = "";
+                                    int count = 0;
+                                    while (volume_name.equals("")) {
+                                        if (volumes[count].getProduct_pcs_left() > 0) {
+                                            volume_name = volumes[count].getProduct_volume();
+                                        } else {
+                                            count++;
+                                        }
+                                    }
+                                    volume_name = volume_name.replace(" ", "");
 
                             %>
                             <div class="col-sm-6 col-md-4 col-lg-4">
                                 <div class="box">
                                     <div class="option_container">
                                         <div class="options">
-                                            <a href="#" class="option1">
+                                            <button class="<%= product.getProduct_id()%>_1_<%= volume_name%> option1">
                                                 Thêm vào giỏ
-                                            </a>
+                                            </button>
+                                            <script type="text/javascript">
+                                                $(document).ready(function () {
+                                                    $('.<%= product.getProduct_id()%>_1_<%= volume_name%>').click(function () {
+                                                        $.get('AddCartServlet', {
+                                                            product_id: <%= product.getProduct_id()%>,
+                                                            quantity: 1,
+                                                            volume: "<%= volume_name%>"
+                                                        }, function (responseText) {
+
+                                                        });
+                                                    });
+
+                                                });
+                                            </script>
                                             <a href="productdetail.jsp?product_id=<%= product.getProduct_id()%>" class="option2">
                                                 Xem chi tiết
                                             </a>
@@ -418,15 +443,39 @@
                             for (int i = 0; i < 3; i++) {
                                 Product product = productsMostSold[i];
                                 ProductVolume[] volumes = product.getProduct_volumes();
+                                String volume_name = "";
+                                int count = 0;
+                                while (volume_name.equals("")) {
+                                    if (volumes[count].getProduct_pcs_left() > 0) {
+                                        volume_name = volumes[count].getProduct_volume();
+                                    } else {
+                                        count++;
+                                    }
+                                }
+                                volume_name = volume_name.replace(" ", "");
 
                         %>
                         <div class="col-sm-6 col-md-4 col-lg-4">
                             <div class="box">
                                 <div class="option_container">
                                     <div class="options">
-                                        <a href="#" class="option1">
+                                        <button class="<%= product.getProduct_id()%>_1_<%= volume_name%> option1">
                                             Thêm vào giỏ
-                                        </a>
+                                        </button>
+                                        <script type="text/javascript">
+                                            $(document).ready(function () {
+                                                $('.<%= product.getProduct_id()%>_1_<%= volume_name%>').click(function () {
+                                                    $.get('AddCartServlet', {
+                                                        product_id: <%= product.getProduct_id()%>,
+                                                        quantity: 1,
+                                                        volume: "<%= volume_name%>"
+                                                    }, function (responseText) {
+
+                                                    });
+                                                });
+
+                                            });
+                                        </script>
                                         <a href="productdetail.jsp?product_id=<%= product.getProduct_id()%>" class="option2">
                                             Xem chi tiết
                                         </a>

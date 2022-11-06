@@ -86,19 +86,46 @@
                                 case "high_price":
                                     products = pdao.getProductOrderByPriceToLow();
                                     break;    
+                                case "most_sold":
+                                    products = pdao.getProductOrderByMostSold();
+                                    break;    
                             }
                         }
                         for (Product product : products) {
                             ProductVolume[] volumes = product.getProduct_volumes();
-
+                            String volume_name = "";
+                                int count = 0;
+                                while (volume_name.equals("")) {
+                                    if (volumes[count].getProduct_pcs_left() > 0) {
+                                        volume_name = volumes[count].getProduct_volume();
+                                    } else {
+                                        count++;
+                                    }
+                                }
+                                volume_name = volume_name.replace(" ", "");
+ 
                     %>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="box">
                             <div class="option_container">
                                 <div class="options">
-                                    <a href="#" class="option1">
-                                        Thêm vào giỏ
-                                    </a>
+                                    <button class="<%= product.getProduct_id()%>_1_<%= volume_name%> option1">
+                                            Thêm vào giỏ
+                                        </button>
+                                        <script type="text/javascript">
+                                            $(document).ready(function () {
+                                                $('.<%= product.getProduct_id()%>_1_<%= volume_name%>').click(function() {
+                                                    $.get('AddCartServlet', {
+                                                        product_id: <%= product.getProduct_id()%>,
+                                                        quantity: 1,
+                                                        volume: "<%= volume_name%>"
+                                                    }, function (responseText) {
+
+                                                    });
+                                                });
+
+                                            });
+                                        </script>
                                     <a href="productdetail.jsp?product_id=<%= product.getProduct_id()%>" class="option2">
                                         Xem chi tiết
                                     </a>

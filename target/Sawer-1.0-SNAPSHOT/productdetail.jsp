@@ -266,8 +266,8 @@
                                                                 <div class="text-hide">
                                                                     <%= productVolume.getProduct_pcs_left() %>
                                                                 </div>
-                                                                <p class="text-center">EDP <%=
-                                                                        productVolume.getProduct_volume()%><br />
+                                                                <p class="text-center">EDP <span id="volume-choice"><%=
+                                                                    productVolume.getProduct_volume()%></span><br />
                                                                         <b>
                                                                             <%= productVolume.getProduct_price()%>
                                                                         </b>
@@ -285,7 +285,20 @@
                                                     </div>
                                                     <div class="btn-box">
                                                         <button class="cart-btn">Thêm vào vỏ hàng</button>
-                                                        <button class="buy-btn">Mua ngay</button>
+                                                        <script type="text/javascript">
+                                                        $(document).ready(function () {
+                                                            $('.cart-btn').click(function() {
+                                                                $.get('AddCartServlet', {
+                                                                    product_id: <%= product.getProduct_id()%>,
+                                                                    quantity: $('#txtquantity').val(),
+                                                                    volume: $('div#main-price > span').html()
+                                                                }, function (responseText) {
+
+                                                                });
+                                                            });
+
+                                                        });
+                                                        </script>
                                                     </div>
 
                                                 </div>
