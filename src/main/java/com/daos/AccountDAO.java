@@ -84,18 +84,14 @@ public class AccountDAO {
         return count;
     }
     
-    public int update(Account account) {
+    public int update(Account account) throws SQLException {
         int count = 0;
-        try {
-            PreparedStatement pst = conn.prepareStatement("Update Account set account_phone=?, account_pass=?, account_role=? where account_id=?");
+            PreparedStatement pst = conn.prepareStatement("Update Account set account_phone=?, account_pass=?, role_id=? where account_id=?");
             pst.setInt(4, account.getAccount_id());
             pst.setString(1, account.getAccount_phone());
             pst.setString(2, account.getAccount_pass());
             pst.setInt(3, account.getAccount_role());
             count = pst.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return count;
     }
     

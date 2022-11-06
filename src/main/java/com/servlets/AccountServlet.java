@@ -11,11 +11,16 @@ import com.models.Customer;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+<<<<<<< HEAD
 import java.sql.Date;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+=======
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+>>>>>>> 98da1a92b187330610cab9f75c216788b690629f
 
 /**
  *

@@ -21,7 +21,7 @@
       <meta name="description" content="" />
       <meta name="author" content="" />
       <link rel="shortcut icon" href="Assest/Logo.png" type="">
-      <title>Famms - Fashion HTML Template</title>
+      <title>Sawer - Website bán nước hoa hàng đầu</title>
       <!-- bootstrap core css -->
       <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
       <!-- font awesome style -->
