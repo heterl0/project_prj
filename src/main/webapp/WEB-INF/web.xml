@@ -20,6 +20,14 @@
         <servlet-name>AddBillServlet</servlet-name>
         <servlet-class>com.servlets.AddBillServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProductServlet</servlet-name>
+        <servlet-class>com.servlets.ProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BillServlet</servlet-name>
+        <servlet-class>com.servlets.BillServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUpSerlvet</servlet-name>
         <url-pattern>/SignUpServlet</url-pattern>
@@ -30,11 +38,6 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AccountServlet</servlet-name>
-<<<<<<< HEAD
-
-
-        <url-pattern>/AccountServlet/*</url-pattern>
-=======
         <url-pattern>/AccountServlet/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -44,7 +47,14 @@
     <servlet-mapping>
         <servlet-name>AddBillServlet</servlet-name>
         <url-pattern>/AddBillServlet</url-pattern>
->>>>>>> aca2e87e486c2d81e0aec9b4270b5650c6cda525
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductServlet</servlet-name>
+        <url-pattern>/ProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BillServlet</servlet-name>
+        <url-pattern>/BillServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

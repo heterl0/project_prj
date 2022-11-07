@@ -1,38 +1,3 @@
-<<<<<<< HEAD
-D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\db\DBConnection.java
-D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\servlets\SignInServlet.java
-D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\models\Product.java
-D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\servlets\AddCartServlet.java
-D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\daos\ProductDAO.java
-D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\servlets\AccountServlet.java
-D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\daos\CartDAO.java
-D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\models\CartProduct.java
-D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\models\Brand.java
-D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\servlets\SignUpServlet.java
-D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\daos\AccountDAO.java
-D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\models\ProductVolume.java
-D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\daos\CustomerDAO.java
-D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\models\Customer.java
-D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\daos\BrandDAO.java
-D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\daos\VolumeDAO.java
-D:\University\FALL2022\PRJ301\PRJ_DEMO\project_prj\src\main\java\com\models\Account.java
-=======
-<<<<<<< HEAD
-C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\servlets\SignUpServlet.java
-C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\daos\AccountDAO.java
-C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\daos\ProductDAO.java
-C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\models\Customer.java
-C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\models\ProductVolume.java
-C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\servlets\SignInServlet.java
-C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\models\Brand.java
-C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\daos\BrandDAO.java
-C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\models\Product.java
-C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\db\DBConnection.java
-C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\servlets\AccountServlet.java
-C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\daos\VolumeDAO.java
-C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\daos\CustomerDAO.java
-C:\Users\DELL\OneDriveFPT_FPT_University\Desktop\FA22\PRJ301\code\project_prj\src\main\java\com\models\Account.java
-=======
 D:\Code\JavaWeb\test\src\main\java\com\servlets\SignUpServlet.java
 D:\Code\JavaWeb\test\src\main\java\com\models\Order.java
 D:\Code\JavaWeb\test\src\main\java\com\servlets\AddCartServlet.java
@@ -47,13 +12,13 @@ D:\Code\JavaWeb\test\src\main\java\com\models\CartProduct.java
 D:\Code\JavaWeb\test\src\main\java\com\models\ProductVolume.java
 D:\Code\JavaWeb\test\src\main\java\com\daos\CartDAO.java
 D:\Code\JavaWeb\test\src\main\java\com\daos\OrderDAO.java
+D:\Code\JavaWeb\test\src\main\java\com\servlets\BillServlet.java
 D:\Code\JavaWeb\test\src\main\java\com\models\Brand.java
 D:\Code\JavaWeb\test\src\main\java\com\servlets\AddBillServlet.java
 D:\Code\JavaWeb\test\src\main\java\com\db\DBConnection.java
 D:\Code\JavaWeb\test\src\main\java\com\servlets\AccountServlet.java
 D:\Code\JavaWeb\test\src\main\java\com\daos\ProductDAO.java
 D:\Code\JavaWeb\test\src\main\java\com\models\Account.java
+D:\Code\JavaWeb\test\src\main\java\com\servlets\ProductServlet.java
 D:\Code\JavaWeb\test\src\main\java\com\daos\BillDAO.java
 D:\Code\JavaWeb\test\src\main\java\com\servlets\SignInServlet.java
->>>>>>> aca2e87e486c2d81e0aec9b4270b5650c6cda525
->>>>>>> 98da1a92b187330610cab9f75c216788b690629f

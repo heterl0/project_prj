@@ -46,6 +46,20 @@ public class ProductDAO {
         }
     }
     
+    public Product[] getProductsWithKeyword(String keyword) {
+        ArrayList<Product> arr = new ArrayList<>();
+        for (Product product : products) {
+            if (product.getProduct_name().toLowerCase().contains(keyword.toLowerCase())) {
+                arr.add(product);
+            }
+        }
+        Product[] pdts = new Product[arr.size()];
+        for (int i = 0; i < arr.size();i++) {
+            pdts[i] = arr.get(i);
+        }
+        return pdts;
+    }
+    
     public Product[] getAllProducts() {
         Product[] products = new Product[getSize()];
         ResultSet rs = getAll();
@@ -138,17 +152,29 @@ public class ProductDAO {
 //        return count;
 //    }
 
-//    public int delete(int account_id) {
-//        int count = 0;
-//        try {
-//            PreparedStatement pst = conn.prepareStatement("Delete from Account where account_id=?");
-//            pst.setInt(1, account_id);
-//            count = pst.executeUpdate();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return count;
-//    }
+    public int delete(int product_id) {
+        int count = 0;
+        try {
+            PreparedStatement pst = conn.prepareStatement("Delete from Product_Image where product_id=?");
+            pst.setInt(1, product_id);
+            count = pst.executeUpdate();
+            pst = conn.prepareStatement("Delete from Product_Volume where product_id=?");
+            pst.setInt(1, product_id);
+            count = pst.executeUpdate();
+            pst = conn.prepareStatement("Delete from Cart where product_id=?");
+            pst.setInt(1, product_id);
+            count = pst.executeUpdate();
+            pst = conn.prepareStatement("Delete from Orders where product_id=?");
+            pst.setInt(1, product_id);
+            count = pst.executeUpdate();
+            pst = conn.prepareStatement("Delete from Product where product_id=?");
+            pst.setInt(1, product_id);
+            count = pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return count;
+    }
 
     public int getSize() {
         int count = 0;

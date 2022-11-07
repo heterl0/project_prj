@@ -159,8 +159,8 @@
                                     </svg>
                                 </a>
                             </li>
-                            <form class="d-flex justify-content-between search-inner" action="product.jsp?sortby=search&">
-                                <input type="text" class="form-control" id="search_input" placeholder="Search Here">
+                            <form class="d-flex justify-content-between search-inner" action="product.jsp">
+                                <input type="text" class="form-control" id="search_input" name="searchValue" placeholder="Search Here">
                                 <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </button>
@@ -188,7 +188,7 @@
                                 <a class="nav-link" href="listAccount.jsp">Quản lí tài khoản</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Quản lí đơn hàng</a>
+                                <a class="nav-link" href="listOrder.jsp">Quản lí đơn hàng</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"

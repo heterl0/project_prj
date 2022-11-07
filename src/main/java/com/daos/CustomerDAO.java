@@ -6,6 +6,7 @@ package com.daos;
 
 import com.db.DBConnection;
 import com.models.Account;
+import com.models.Bill;
 import com.models.Customer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -102,15 +103,21 @@ public class CustomerDAO {
         return count;
     }
     
-    public int delete(int customer_id) {
+    public int delete(int customer_id) throws SQLException {
         int count = 0;
-        try {
+            BillDAO billDAO = new BillDAO();
+            if (billDAO.getBillsByCustomerID(customer_id).length != 0) {
+                OrderDAO orderDAO = new OrderDAO();
+                for (Bill bill : billDAO.getBillsByCustomerID(customer_id)) {
+                    orderDAO.delete(bill.getBill_id());
+                }
+            }
+            CartDAO cartDAO = new CartDAO();
+            cartDAO.delete(customer_id);
             PreparedStatement pst = conn.prepareStatement("Delete from Customer where customer_id=?");
             pst.setInt(1, customer_id);
             count = pst.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            
         return count;
     }
     

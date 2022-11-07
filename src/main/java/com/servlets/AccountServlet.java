@@ -11,16 +11,20 @@ import com.models.Customer;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-<<<<<<< HEAD
 import java.sql.Date;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-=======
+
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
->>>>>>> 98da1a92b187330610cab9f75c216788b690629f
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -75,7 +79,11 @@ public class AccountServlet extends HttpServlet {
             AccountDAO dao1 = new AccountDAO();
             int customer_id = Integer.parseInt(c_id);
             int account_id = Integer.parseInt(a_id);
-            dao.delete(customer_id);
+            try {
+                dao.delete(customer_id);
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             dao1.delete(account_id);
             response.sendRedirect("/Sawer/listAccount.jsp");
         } else if (path.startsWith("/Sawer/AccountServlet/Update")) {
@@ -96,7 +104,7 @@ public class AccountServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("account", a);
                 session.setAttribute("customer", c);
-                request.getRequestDispatcher("/updateAccount.jsp").forward(request, response);
+                response.sendRedirect("/Sawer/updateAccount.jsp");
             }
         }
     }
@@ -115,26 +123,54 @@ public class AccountServlet extends HttpServlet {
         String account_pass, account_phone, customer_address, customer_email, customer_name;
         int account_id, account_role;
         if (request.getParameter("btnUpdateAccount") != null) {
-            account_id = Integer.getInteger(request.getParameter("txtAccountid"));
-            account_pass = request.getParameter("txtpass");
-            account_phone = request.getParameter("txtphone");
-            account_role = Integer.getInteger(request.getParameter("txtRoleid"));
+            account_id = Integer.parseInt(request.getParameter("txtAccountid"));
+            account_pass = request.getParameter("txtPass");
+            account_phone = request.getParameter("txtPhone");
+            account_role = Integer.parseInt(request.getParameter("txtRoleId"));
             Account a = new Account(account_id, account_phone, account_pass, account_role);
             AccountDAO dao = new AccountDAO();
 
-            customer_address = request.getParameter("txtAddr");
+            customer_address = request.getParameter("txtAddress");
             customer_email = request.getParameter("txtEmail");
-            customer_name = request.getParameter("txtFullname");
+            customer_name = request.getParameter("txtName");
             Customer c = new Customer(account_id, account_id, customer_name, customer_email, customer_address);
             CustomerDAO dao1 = new CustomerDAO();
 
-            dao.update(a);
-            dao1.update(c);
+            try {
+                dao.update(a);
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                dao1.update(c);
+            } catch (SQLException ex) {
+                Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             response.sendRedirect("/Sawer/listAccount.jsp");
         }
     }
 
+    private String getM5D(String pass) {
+        String hashtext = null;
+        try {
+            MessageDigest m = MessageDigest.getInstance("MD5");
+            m.reset();
+            m.update(pass.getBytes());
+            byte[] digest = m.digest();
+            BigInteger bigInt = new BigInteger(1, digest);
+            hashtext = bigInt.toString(16);
+            // Now we need to zero pad it if you actually want the full 32 chars.
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(SignUpServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return hashtext;
+
+    }
+    
     /**
      * Returns a short description of the servlet.
      *

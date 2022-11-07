@@ -32,13 +32,117 @@
         <link href="css/responsive.css" rel="stylesheet" />
         <link rel="stylesheet" href="style.css">
     </head>
-  
+
     <body class="sub_page">
         <div class="hero_area">
             <!-- header section strats -->
             <%@include file="header.jsp" %>
             <!-- end header section -->
         </div>
+        <%            if (request.getParameter("searchValue") != null) {
+        %>
+        <!-- inner page section -->
+        <section class="inner_page_head">
+            <div class="container_fuild">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="full">
+                            <h3>Tìm kiếm</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end inner page section -->
+        <!-- product section -->
+        <section class="product_section layout_padding">
+            <div class="container">
+                <div class="heading_container heading_center">
+                    <%
+                        String keyWord = request.getParameter("searchValue");
+                    %>
+                    <h2>
+                        Kết quả tìm kiếm cho từ khóa: <%= keyWord%></span>
+                    </h2>
+                </div>
+                <div class="row">
+                    <%
+                        ProductDAO pdao = new ProductDAO();
+                        Product[] products = pdao.getProductsWithKeyword(keyWord);
+                        if (products.length == 0) {
+                    %>
+                    <h1 class="text-center" style="color: red;   ">Không có kết quả với từ khóa trên.</h1>
+
+                    <%
+                    } else {
+                        for (Product product : products) {
+                            ProductVolume[] volumes = product.getProduct_volumes();
+                            String volume_name = "";
+                            int count = 0;
+                            while (volume_name.equals("")) {
+                                if (volumes[count].getProduct_pcs_left() > 0) {
+                                    volume_name = volumes[count].getProduct_volume();
+                                } else {
+                                    count++;
+                                }
+                            }
+                            volume_name = volume_name.replace(" ", "");
+
+                    %>
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="box">
+                            <div class="option_container">
+                                <div class="options">
+                                    <button class="<%= product.getProduct_id()%>_1_<%= volume_name%> option1">
+                                        Thêm vào giỏ
+                                    </button>
+                                    <script type="text/javascript">
+                                        $(document).ready(function () {
+                                            $('.<%= product.getProduct_id()%>_1_<%= volume_name%>').click(function () {
+                                                $.get('AddCartServlet', {
+                                                    product_id: <%= product.getProduct_id()%>,
+                                                    quantity: 1,
+                                                    volume: "<%= volume_name%>"
+                                                }, function (responseText) {
+
+                                                });
+                                            });
+
+                                        });
+                                    </script>
+                                    <a href="productdetail.jsp?product_id=<%= product.getProduct_id()%>" class="option2">
+                                        Xem chi tiết
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="img-box">
+                                <img src="<%= product.getProduct_image()[0]%>" alt="">
+                            </div>
+                            <div class="">
+                                <h5>
+                                    <%= product.getProduct_name()%>
+                                </h5>
+                                <h6 style="color:red">
+                                    <%= volumes[0].getProduct_price()%> đ
+                                    -
+                                    <%= volumes[volumes.length - 1].getProduct_price()%> đ
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                    <%
+                            }
+                        }
+                    %>  
+                </div>
+            </div>
+        </section>
+        <!-- end product section -->
+        <!-- footer section -->
+        <%
+        } else {
+
+        %>    
         <!-- inner page section -->
         <section class="inner_page_head">
             <div class="container_fuild">
@@ -60,13 +164,8 @@
                         Nước hoa <span>của chúng tôi</span>
                     </h2>
                 </div>
-<<<<<<< HEAD
                 <a class="btn btn-danger dropdown-toggle mr-4" style="color:white" type="button" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false">Sắp xếp</a>
-=======
-                <a class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false"style="background-color : rgb(0, 191, 255);" border="1">Sắp xếp</a>
->>>>>>> b40e5e36abb228bc068c720dfc94fe5175b43451
 
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="product.jsp?sortby=a_z">A-Z</a>
@@ -76,11 +175,10 @@
                     <a class="dropdown-item" href="product.jsp?sortby=most_sold">Nhiều người mua</a>
                 </div>
                 <div class="row">
-                    <%  
-                        ProductDAO pdao = new ProductDAO();
+                    <%                        ProductDAO pdao = new ProductDAO();
                         Product[] products = pdao.getAllProducts();
                         if (request.getParameter("sortby") != null) {
-                            switch(request.getParameter("sortby")) {
+                            switch (request.getParameter("sortby")) {
                                 case "a_z":
                                     products = pdao.getProductOrderByAToZ();
                                     break;
@@ -92,47 +190,47 @@
                                     break;
                                 case "high_price":
                                     products = pdao.getProductOrderByPriceToLow();
-                                    break;    
+                                    break;
                                 case "most_sold":
                                     products = pdao.getProductOrderByMostSold();
-                                    break;    
+                                    break;
                             }
                         }
                         for (Product product : products) {
                             ProductVolume[] volumes = product.getProduct_volumes();
                             String volume_name = "";
-                                int count = 0;
-                                while (volume_name.equals("")) {
-                                    if (volumes[count].getProduct_pcs_left() > 0) {
-                                        volume_name = volumes[count].getProduct_volume();
-                                    } else {
-                                        count++;
-                                    }
+                            int count = 0;
+                            while (volume_name.equals("")) {
+                                if (volumes[count].getProduct_pcs_left() > 0) {
+                                    volume_name = volumes[count].getProduct_volume();
+                                } else {
+                                    count++;
                                 }
-                                volume_name = volume_name.replace(" ", "");
- 
+                            }
+                            volume_name = volume_name.replace(" ", "");
+
                     %>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="box">
                             <div class="option_container">
                                 <div class="options">
                                     <button class="<%= product.getProduct_id()%>_1_<%= volume_name%> option1">
-                                            Thêm vào giỏ
-                                        </button>
-                                        <script type="text/javascript">
-                                            $(document).ready(function () {
-                                                $('.<%= product.getProduct_id()%>_1_<%= volume_name%>').click(function() {
-                                                    $.get('AddCartServlet', {
-                                                        product_id: <%= product.getProduct_id()%>,
-                                                        quantity: 1,
-                                                        volume: "<%= volume_name%>"
-                                                    }, function (responseText) {
+                                        Thêm vào giỏ
+                                    </button>
+                                    <script type="text/javascript">
+                                        $(document).ready(function () {
+                                            $('.<%= product.getProduct_id()%>_1_<%= volume_name%>').click(function () {
+                                                $.get('AddCartServlet', {
+                                                    product_id: <%= product.getProduct_id()%>,
+                                                    quantity: 1,
+                                                    volume: "<%= volume_name%>"
+                                                }, function (responseText) {
 
-                                                    });
                                                 });
-
                                             });
-                                        </script>
+
+                                        });
+                                    </script>
                                     <a href="productdetail.jsp?product_id=<%= product.getProduct_id()%>" class="option2">
                                         Xem chi tiết
                                     </a>
@@ -159,6 +257,9 @@
                 </div>
             </div>
         </section>
+        <%
+            }
+        %>    
         <!-- end product section -->
         <!-- footer section -->
         <%@include file="footer.jsp" %>

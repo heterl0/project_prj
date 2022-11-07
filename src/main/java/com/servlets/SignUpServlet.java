@@ -136,8 +136,16 @@ public class SignUpServlet extends HttpServlet {
             AccountDAO accountDAO = new AccountDAO();
             CustomerDAO customerDAO = new CustomerDAO();
             int id = accountDAO.getAccount(phone).getAccount_id();
-            accountDAO.update(new Account(id, phone, getM5D(pass), 2));
-            customerDAO.update(new Customer(id, id, name, email, address));
+            try {
+                accountDAO.update(new Account(id, phone, getM5D(pass), 2));
+            } catch (SQLException ex) {
+                Logger.getLogger(SignUpServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                customerDAO.update(new Customer(id, id, name, email, address));
+            } catch (SQLException ex) {
+                Logger.getLogger(SignUpServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             response.sendRedirect("infor.jsp");
         }
     }

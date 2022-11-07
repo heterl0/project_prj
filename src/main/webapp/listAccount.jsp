@@ -32,7 +32,11 @@
         <link href="css/responsive.css" rel="stylesheet" />
     </head>
     <body>
-        <%@include file="header.jsp" %>
+         <div class="hero_area">
+         <!-- header section strats -->
+         <%@include file="header.jsp" %>
+         <!-- end header section -->
+      
         <div class="container"> 
             <h1 align="center">Customer and Account Management</h1>
             <table class="table table-striped" border="1">
@@ -75,5 +79,6 @@
             </table>
         </div>
         <%@include file="footer.jsp" %>
+        </div>
     </body>
 </html>

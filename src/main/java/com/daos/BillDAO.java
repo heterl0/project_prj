@@ -45,6 +45,30 @@ public class BillDAO {
         return rs;
     }
     
+    public Bill[] getBills() {
+        Bill[] bill = null;
+        try {
+            PreparedStatement pst = conn.prepareStatement("Select * from Bill");
+            ResultSet rs = pst.executeQuery();
+            int count = 0;
+            while (rs.next()) {
+                count++;
+            }
+            bill = new Bill[count];
+            rs = pst.executeQuery();
+            count = 0;
+            ProductDAO productDAO = new ProductDAO();
+            Product product = null;
+            while(rs.next()) {
+                bill[count++] = new Bill(rs.getInt(1), rs.getInt(2),rs.getDate(3), rs.getString(4), rs.getInt(5));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BillDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bill;
+    }
+    
     public Bill[] getBillsByCustomerID(int customer_id) {
         Bill[] bill = null;
         try {
@@ -144,19 +168,20 @@ public class BillDAO {
 //        return count;
 //    }
 //    
-//    public int delete(CartProduct cart) {
-//        int count = 0;
-//        try {
-//            PreparedStatement pst = conn.prepareStatement("Delete from Cart where customer_id=? And product_volume=? And product_id=?");
-//            pst.setInt(1, cart.getCustomer_id());
-//            pst.setString(2, cart.getVolume());
-//            pst.setInt(3, cart.getProduct().getProduct_id());
-//            count = pst.executeUpdate();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(BillDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return count;
-//    } 
+    public int delete(int bill_id) {
+        int count = 0;
+        try {
+            PreparedStatement pst = conn.prepareStatement("Delete from Orders where bill_id=?");
+            pst.setInt(1, bill_id);
+            count = pst.executeUpdate();
+            pst = conn.prepareStatement("Delete from Bill where bill_id=?");
+            pst.setInt(1, bill_id);
+            count = pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(BillDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return count;
+    } 
     
     public int getSize() {
         int count = 0;

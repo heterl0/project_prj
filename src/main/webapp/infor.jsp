@@ -117,49 +117,49 @@
         }
 
     </style>
-    
+
     <script src="https://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#passHelp').hide();
-                $('#emailHelp').hide();
-                
-                $('#txtPass').blur(function (event) {
-                    var pass = $('#txtPass').val();
-                    $.get('SignUpServlet', {
-                        checkPass: pass
-                    }, function (responseText) {
-                        if (responseText === '') {
-                            $('#passHelp').text("");
-                            $('#passHelp').hide();
-                            $('#btnUpdate').removeAttr('disabled');
-                        } else {
-                            $('#passHelp').show();
-                            $('#passHelp').text(responseText);
-                            $('#btnUpdate').attr('disabled', 'disabled');
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#passHelp').hide();
+            $('#emailHelp').hide();
 
-                        }
-                    });
-                });
-                $('#txtEmail').blur(function (event) {
-                    var email = $('#txtEmail').val();
-                    $.get('SignUpServlet', {
-                        checkEmail: email
-                    }, function (responseText) {
-                        if (responseText === '') {
-                            $('#emailHelp').text("");
-                            $('#emailHelp').hide();
-                            $('#btnUpdate').removeAttr('disabled');
-                        } else {
-                            $('#emailHelp').show();
-                            $('#emailHelp').text(responseText);
-                            $('#btnUpdate').attr('disabled', 'disabled');
+            $('#txtPass').blur(function (event) {
+                var pass = $('#txtPass').val();
+                $.get('SignUpServlet', {
+                    checkPass: pass
+                }, function (responseText) {
+                    if (responseText === '') {
+                        $('#passHelp').text("");
+                        $('#passHelp').hide();
+                        $('#btnUpdate').removeAttr('disabled');
+                    } else {
+                        $('#passHelp').show();
+                        $('#passHelp').text(responseText);
+                        $('#btnUpdate').attr('disabled', 'disabled');
 
-                        }
-                    });
+                    }
                 });
             });
-        </script>
+            $('#txtEmail').blur(function (event) {
+                var email = $('#txtEmail').val();
+                $.get('SignUpServlet', {
+                    checkEmail: email
+                }, function (responseText) {
+                    if (responseText === '') {
+                        $('#emailHelp').text("");
+                        $('#emailHelp').hide();
+                        $('#btnUpdate').removeAttr('disabled');
+                    } else {
+                        $('#emailHelp').show();
+                        $('#emailHelp').text(responseText);
+                        $('#btnUpdate').attr('disabled', 'disabled');
+
+                    }
+                });
+            });
+        });
+    </script>
     <body class="sub_page">
 
         <div class="hero_area">
@@ -194,16 +194,55 @@
                 <div class="small-container cart-page">
                     <form action="SignUpServlet" method="post">
                         <div class="row">
+                            <%
+                                BillDAO billDAO = new BillDAO();
+                                if (billDAO.getBillsByCustomerID(Integer.parseInt(account_id)) == null || billDAO.getBillsByCustomerID(Integer.parseInt(account_id)).length == 0) {
+                            %>
+                            <div class="offset-md-2 col-md-8 offset-md-2">
+                                <div class="flex-row">
+                                    <h3 class="text-center">Chỉnh sửa thông tin</h3>
+                                    <%
+                                        CustomerDAO customerDAO = new CustomerDAO();
+                                        AccountDAO accountDAO = new AccountDAO();
+                                        Customer customer = customerDAO.getCustomerByAccountID(Integer.parseInt(account_id));
+
+                                    %>
+                                    <div class="form-group">
+                                        <label for="txtPhone">Số điện thoại</label>
+                                        <input readonly id="txtPhone"name="txtPhone" type="text" class="form-control" id="txtPhone" aria-describedby="phoneHelp" placeholder="Nhập số điện thoại" value="<%= accountDAO.getAccountBy(account_id).getAccount_phone()%>">
+                                        <small id="phoneHelp" class="form-text text-muted"></small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtName">Tên khách hàng</label>
+                                        <input id="txtName" name="txtName" type="text" class="form-control" id="txtName" aria-describedby="nameHelp" placeholder="Nhập tên của bạn" value="<%= customer.getCustomer_name()%>" required>
+                                        <small id="nameHelp" class="form-text text-muted"></small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="txtPhone">Mật khẩu</label>
+                                        <input id="txtPass" name="txtPass" type="password" class="form-control" id="txtPhone" aria-describedby="passHelp" placeholder="Nhập số mật khẩu" value="<%= accountDAO.getAccountBy(account_id).getAccount_pass()%>">
+                                        <small id="passHelp" class="form-text text-muted"></small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtEmail">Địa chỉ Email</label>
+                                        <input id="txtEmail" name="txtEmail" type="email" class="form-control" id="txtEmail" aria-describedby="emailHelp" placeholder="Nhập Email" value="<%= customer.getCustomer_email()%>">
+                                        <small id="emailHelp" class="form-text text-muted"></small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtAddress">Địa chỉ liên lạc</label>
+                                        <input id="txtAddress" name="txtAddress" type="text" class="form-control" id="txtAddress" aria-describedby="addressHelp" placeholder="Nhập địa chỉ" value="<%= customer.getCustomer_address()%>" required>
+                                        <small id="addressHelp" class="form-text text-muted"></small>
+                                    </div>
+                                    <input type="submit" name="btnUpdate" id="btnUpdate" class="btn btn-primary btn-color" value="Chỉnh sửa">
+                                </div> 
+                            </div>
+                            <%
+                            } else {
+                                int totalMoney = 0;
+                            %>
                             <div class="col-md-8">
-                                <%
-                                    BillDAO billDAO = new BillDAO();
-                                    if (billDAO.getBillsByCustomerID(Integer.parseInt(account_id)) == null || billDAO.getBillsByCustomerID(Integer.parseInt(account_id)).length == 0) {
-                                %>
-                                <h1 align="center" style="color: red;   "><strong>Không có đơn hàng nào <a href="product.jsp">Về trang sản phẩm.</a></strong></h1>
-                                <%
-                                } else {
-                                    int totalMoney = 0;
-                                %>
+
+
                                 <h1 class="text-center">Đơn Hàng</h1>
                                 <table>
                                     <tr>
@@ -252,9 +291,6 @@
                                     %>
                                 </table>
                             </div>
-                            <%
-                                }
-                            %>
                             <div class="offset-md-1 col-md-3">
                                 <div class="flex-row">
                                     <h3 class="text-center">Chỉnh sửa thông tin</h3>
@@ -274,7 +310,7 @@
                                         <input id="txtName" name="txtName" type="text" class="form-control" id="txtName" aria-describedby="nameHelp" placeholder="Nhập tên của bạn" value="<%= customer.getCustomer_name()%>" required>
                                         <small id="nameHelp" class="form-text text-muted"></small>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="txtPhone">Mật khẩu</label>
                                         <input id="txtPass" name="txtPass" type="password" class="form-control" id="txtPhone" aria-describedby="passHelp" placeholder="Nhập số mật khẩu" value="<%= accountDAO.getAccountBy(account_id).getAccount_pass()%>">
@@ -293,6 +329,9 @@
                                     <input type="submit" name="btnUpdate" id="btnUpdate" class="btn btn-primary btn-color" value="Chỉnh sửa">
                                 </div>
                             </div>
+                            <%
+                    }
+                            %>
                         </div>
                     </form>
                 </div>

@@ -17,7 +17,10 @@ import java.io.PrintWriter;
 import jakarta.servlet.http.*;
 import jakarta.servlet.*;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -90,7 +93,11 @@ public class AddBillServlet extends HttpServlet {
             }
             Customer c = new Customer(customer_id, customer_id, customer_name, customer_email, customer_address);
             CustomerDAO cdao = new CustomerDAO();
-            cdao.update(c);
+            try {
+                cdao.update(c);
+            } catch (SQLException ex) {
+                Logger.getLogger(AddBillServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             Bill newBill = new Bill();
             BillDAO billDAO = new BillDAO();
             newBill.setBill_id(billDAO.getSize() + 1);
@@ -112,7 +119,7 @@ public class AddBillServlet extends HttpServlet {
             }
             newBill.setTotal_money(totalMoney);
             billDAO.updateTotalMoney(newBill.getBill_id(), totalMoney);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("infor.jsp");
         }
     }
 

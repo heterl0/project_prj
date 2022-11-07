@@ -148,6 +148,18 @@ public class CartDAO {
         return count;
     }
     
+    public int delete(int customer_id) {
+        int count = 0;
+        try {
+            PreparedStatement pst = conn.prepareStatement("Delete from Cart where customer_id=?");
+            pst.setInt(1, customer_id);
+            count = pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return count;
+    }
+    
     public int delete(CartProduct cart) {
         int count = 0;
         try {

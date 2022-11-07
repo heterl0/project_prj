@@ -166,7 +166,7 @@
                     CartDAO cartDAO = new CartDAO();
                     if (cartDAO.getCartsByCustomerID(Integer.parseInt(account_id)) == null || cartDAO.getCartsByCustomerID(Integer.parseInt(account_id)).length == 0) {
                 %>
-                <h1 align="center" style="color: red;   "><strong>Giỏ hàng trống! <a href="signin.jsp">Về trang sản phẩm.</a></strong></h1>
+                <h1 align="center" style="color: red;   "><strong>Giỏ hàng trống! <a href="product.jsp">Về trang sản phẩm.</a></strong></h1>
                 <%
                 } else {
                     int totalMoney = 0;
